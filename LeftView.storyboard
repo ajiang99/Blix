@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LeftView-->
+        <scene sceneID="VZa-9I-VuF">
+            <objects>
+                <viewController storyboardIdentifier="LeftView" title="LeftView" id="fJZ-Pe-lQQ" customClass="LeftViewController" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MRX-76-nJ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="duu-yd-JHk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5QG-qa-qNM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.28086824420000001" green="0.61526677539999997" blue="0.83743780850000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5t2-7b-VYV" appends="YES" id="mxq-G5-M76"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <segue destination="ZB6-7C-pQ6" kind="unwind" identifier="unwindToCenterFromLeft" unwindAction="unwindToCenterViewWithSegue:" id="Thq-lL-3ZW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="guY-jt-n0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZB6-7C-pQ6" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="left" id="5t2-7b-VYV" userLabel="centerFromLeft">
+                    <connections>
+                        <action selector="centerFromLeft:" destination="fJZ-Pe-lQQ" id="YTh-8a-RQQ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="313" y="833"/>
+        </scene>
+    </scenes>
+</document>

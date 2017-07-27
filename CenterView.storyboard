@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Center View Controller-->
+        <scene sceneID="jdy-lD-3fO">
+            <objects>
+                <viewController storyboardIdentifier="CenterView" id="LeU-S4-Xt9" customClass="CenterViewController" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bno-3Y-gCh"/>
+                        <viewControllerLayoutGuide type="bottom" id="tFQ-Ih-8Ou"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="cameraInitial" id="wyk-6d-RX7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.43359375" green="0.16968749999999999" blue="0.51816105769999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dfn-yE-g78" appends="YES" id="42H-x2-rmk"/>
+                            <outletCollection property="gestureRecognizers" destination="UVl-eT-F8G" appends="YES" id="PHq-tJ-aRG"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="sdU-1D-QtC"/>
+                    <connections>
+                        <segue destination="JMf-j5-V5o" kind="show" identifier="rightSwipe" id="uqf-OX-LAE"/>
+                        <segue destination="x1Z-4V-IXu" kind="show" identifier="leftSwipe" id="Ys2-cm-SE8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWJ-f0-lu2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="dfn-yE-g78" userLabel="RIght Swipe">
+                    <connections>
+                        <action selector="rightSwipe:" destination="LeU-S4-Xt9" id="Rvh-6d-O4x"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="UVl-eT-F8G">
+                    <connections>
+                        <action selector="leftSwipe:" destination="LeU-S4-Xt9" id="iuk-wB-Dco"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1272.8" y="69.715142428785612"/>
+        </scene>
+        <!--RightView-->
+        <scene sceneID="dLa-3b-bx8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RightView" id="JMf-j5-V5o" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XKm-el-KMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="69"/>
+        </scene>
+        <!--LeftView-->
+        <scene sceneID="eu3-dq-U16">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LeftView" storyboardName="LeftView" referencedIdentifier="LeftView" id="x1Z-4V-IXu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d6j-4Y-fvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="679"/>
+        </scene>
+    </scenes>
+</document>
