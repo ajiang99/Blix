@@ -5,8 +5,9 @@
 //  Created by Andrew Jiang on 7/27/17.
 //  Copyright © 2017 Make School. All rights reserved.
 //
-
+//gucci
 import UIKit
+import Foundation
 
 class CenterViewController: UIViewController {
     @IBAction func leftSwipe(_ sender: UISwipeGestureRecognizer) {
