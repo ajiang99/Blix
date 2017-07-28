@@ -27,7 +27,7 @@
                         </connections>
                     </view>
                     <connections>
-                        <segue destination="SKo-e8-ApA" kind="unwind" identifier="unwindToCenterFromRight" unwindAction="unwindToCenterViewWithSegue:" id="Rg4-7v-EPW"/>
+                        <segue destination="SKo-e8-ApA" kind="unwind" identifier="unwindFromRight" unwindAction="unwindToCenterWithSegue:" id="RXT-sk-Iki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOt-U8-bEo" userLabel="First Responder" sceneMemberID="firstResponder"/>

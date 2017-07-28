@@ -11,7 +11,8 @@ import UIKit
 class LeftViewController: UIViewController {
     
     @IBAction func centerFromLeft(_ sender: UISwipeGestureRecognizer) {
-        performSegue(withIdentifier: "unwindToCenterFromLeft", sender: self)
+        print("center from left")
+        performSegue(withIdentifier: "unwindFromLeft", sender: self)
 
     }
 
