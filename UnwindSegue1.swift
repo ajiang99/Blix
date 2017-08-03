@@ -28,7 +28,7 @@ class UnwindSegue1: UIStoryboardSegue {
                 
             }, completion: {(Finished) -> Void in
                
-                self.source.dismiss(animated: false, completion: nil)
+                self.destination.dismiss(animated: false, completion: nil)
             
             })
             
