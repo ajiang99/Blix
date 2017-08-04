@@ -23,19 +23,21 @@ class DatabaseParse{
         return [array.filter {namePredicate.evaluate(with: $0)}[0]]
     }
     
-    static func getDataCrude(array: Array<Dictionary<String,String>>, data: String){
-        for stuff in array{
-            if stuff["d_name"] == data{
-                print(stuff)
+    static func getDataFromName(array: Array<Dictionary<String,String>>, data: String){
+        for name in array{
+            if name["d_name"] == data{
+                print(name)
             }
         }
     }
     
-    static func getIngredients(array: Array<Dictionary<String,String>>){
+    static func getIngredients(array: Array<Dictionary<String,String>>) -> (Set<String>) {
+        var setDrinks = Set<String>()
         for stuff in array{
             let str = stuff["d_shopping"]
-            let array = str?.components(separatedBy: "|")
-            print(array!)
+            let arrDrinks = (str?.components(separatedBy: "|"))!
+            setDrinks = Set(arrDrinks)
         }
+        return setDrinks
     }
 }

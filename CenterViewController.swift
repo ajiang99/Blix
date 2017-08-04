@@ -1,15 +1,15 @@
-   //
-   //  CenterViewController.swift
-   //  Blix
+//
+//  CenterViewController.swift
+//  Blix
    //
    //  Created by Andrew Jiang on 7/27/17.
    //  Copyright © 2017 Make School. All rights reserved.
    //
    //gucci
-   import UIKit
-   import SwiftyJSON
-   
-   class CenterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+import UIKit
+import SwiftyJSON
+
+class CenterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     let imagePicker = UIImagePickerController()
     let session = URLSession.shared
@@ -20,9 +20,11 @@
     }
     
     var result = ""
-    var resultArr = [String]()
-
-   //LABELS AND BUTTONS
+    var resultSet = Set<String>()
+    var elementsToReturn = [Dictionary<String,String>()]
+    var count = 0
+    
+    //LABELS AND BUTTONS
     @IBOutlet var imageView: UIImageView!
     
     @IBAction func loadImage(_ sender: Any) {
@@ -53,38 +55,7 @@
     func recgonizeImage(image : UIImage){
         
     }
-   //DATA ANALYSIS FROM PLIST
-    /*
-    func getSwiftArrayFromPlist(name: String) -> (Array<Dictionary<String,String>>){
-        let path = Bundle.main.path(forResource: name, ofType: "plist")
-        var arr: NSArray?
-        arr = NSArray(contentsOfFile: path!)
-        return (arr as? Array<Dictionary<String,String>>)!
-    }
-    
-    func getDataUsingPredicate(name: String) -> (Array<[String:String]>){
-        let array = getSwiftArrayFromPlist(name: "Drinks")
-        let namePredicate = NSPredicate(format: "d_cat = %@", name)
-        return [array.filter {namePredicate.evaluate(with: $0)}[0]]
-    }
-    
-    func getDataCrude(array: Array<Dictionary<String,String>>, data: String){
-        for stuff in array{
-            if stuff["d_name"] == data{
-                print(stuff)
-            }
-        }
-    }
-    
-    func getIngredients(array: Array<Dictionary<String,String>>){
-        for stuff in array{
-            let str = stuff["d_shopping"]
-            let array = str?.components(separatedBy: "|")
-            print(array!)
-        }
-    }
-    */
-   //VIEW LOADS
+    //VIEW LOADS
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -97,7 +68,7 @@
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-   //SEGUE CONTROL
+    //SEGUE CONTROL
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
         if let id = identifier{
             if id == "unwindFromLeft" {
@@ -117,8 +88,8 @@
         return super.segueForUnwinding(to: toViewController,from: fromViewController, identifier: identifier)!
     }
 }
-   
-   
+
+
 extension CenterViewController {
     
     func analyzeResults(_ dataToParse: Data) {
@@ -133,7 +104,7 @@ extension CenterViewController {
             
             self.imageView.isHidden = true
             self.labelResults.isHidden = false
-        
+            
             // Check for errors
             if (errorObj.dictionaryValue != [:]) {
                 self.labelResults.text = "Error code \(errorObj["code"]): \(errorObj["message"])"
@@ -143,7 +114,7 @@ extension CenterViewController {
                 let responses: JSON = json["responses"][0]
                 
                 // Get face annotations
-        
+                
                 let webDetection: JSON = responses["webDetection"]
                 let webEntities: JSON = webDetection["webEntities"]
                 let numberOfDrinks = webEntities.count
@@ -151,10 +122,13 @@ extension CenterViewController {
                 for index in 0..<numberOfDrinks{
                     let drinkData : JSON = webEntities[index]
                     self.result += drinkData["description"].stringValue
-                    self.resultArr.append(drinkData["description"].stringValue)
-                    print(self.resultArr)
+                    self.resultSet.insert(drinkData["description"].stringValue)
+                    print(self.resultSet)
                 }
-                self.labelResults.text! = self.result
+                self.compareWithDatabase()
+                print(self.elementsToReturn)
+                print(self.count)
+                //self.labelResults.text! = self.result
             }
         })
         
@@ -163,13 +137,13 @@ extension CenterViewController {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
-
+            
             labelResults.isHidden = true
             
             // Base64 encode the image and create the request
-//2
+            //2
             let binaryImageData = base64EncodeImage(pickedImage)
-//3 Go to createRequest
+            //3 Go to createRequest
             createRequest(with: binaryImageData)
         }
         
@@ -188,11 +162,11 @@ extension CenterViewController {
         UIGraphicsEndImageContext()
         return resizedImage!
     }
-   }
-   
-   
-   /// Networking
-   extension CenterViewController {
+}
+
+
+/// Networking
+extension CenterViewController {
     func base64EncodeImage(_ image: UIImage) -> String {
         var imagedata = UIImagePNGRepresentation(image)
         
@@ -208,7 +182,7 @@ extension CenterViewController {
     
     func createRequest(with imageBase64: String) {
         // Create our request URL
-    //4 Pulls Request URL
+        //4 Pulls Request URL
         var request = URLRequest(url: googleURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -255,5 +229,21 @@ extension CenterViewController {
         
         task.resume()
     }
-   }
-   
+}
+extension CenterViewController{
+    func compareWithDatabase(){
+        let netArray = DatabaseParse.getSwiftArrayFromPlist(name: "Drinks")
+        for element in netArray{
+            let ingredientsSet = DatabaseParse.getIngredients(array: [element])
+            let unionSet = ingredientsSet.intersection(resultSet)
+            print(unionSet)
+            print(unionSet.count)
+            print(ingredientsSet)
+            print(ingredientsSet.count)
+            if Double(unionSet.count) > Double(ingredientsSet.count)*0.75{
+                elementsToReturn.append(element)
+                count += count + 1
+            }
+        }
+    }
+}
