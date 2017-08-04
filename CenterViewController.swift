@@ -18,8 +18,11 @@
     var googleURL : URL {
         return URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleAPIKey)")!
     }
-
     
+    var result = ""
+    var resultArr = [String]()
+
+   //LABELS AND BUTTONS
     @IBOutlet var imageView: UIImageView!
     
     @IBAction func loadImage(_ sender: Any) {
@@ -29,6 +32,7 @@
         present(imagePicker, animated: true, completion: nil)
     }
     @IBOutlet var labelResults: UILabel!
+    
     @IBAction func takePicture(_ sender: UIButton) {
     }
     @IBAction func leftSwipe(_ sender: UISwipeGestureRecognizer) {
@@ -49,17 +53,51 @@
     func recgonizeImage(image : UIImage){
         
     }
+   //DATA ANALYSIS FROM PLIST
+    /*
+    func getSwiftArrayFromPlist(name: String) -> (Array<Dictionary<String,String>>){
+        let path = Bundle.main.path(forResource: name, ofType: "plist")
+        var arr: NSArray?
+        arr = NSArray(contentsOfFile: path!)
+        return (arr as? Array<Dictionary<String,String>>)!
+    }
     
+    func getDataUsingPredicate(name: String) -> (Array<[String:String]>){
+        let array = getSwiftArrayFromPlist(name: "Drinks")
+        let namePredicate = NSPredicate(format: "d_cat = %@", name)
+        return [array.filter {namePredicate.evaluate(with: $0)}[0]]
+    }
+    
+    func getDataCrude(array: Array<Dictionary<String,String>>, data: String){
+        for stuff in array{
+            if stuff["d_name"] == data{
+                print(stuff)
+            }
+        }
+    }
+    
+    func getIngredients(array: Array<Dictionary<String,String>>){
+        for stuff in array{
+            let str = stuff["d_shopping"]
+            let array = str?.components(separatedBy: "|")
+            print(array!)
+        }
+    }
+    */
+   //VIEW LOADS
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
+        let totArr = DatabaseParse.getSwiftArrayFromPlist(name: "Drinks")
+        //print(getDataCrude(array: totArr, data: "24 karat nightmare"))
+        print(DatabaseParse.getIngredients(array: totArr))
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+   //SEGUE CONTROL
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
         if let id = identifier{
             if id == "unwindFromLeft" {
@@ -92,7 +130,6 @@ extension CenterViewController {
             // Use SwiftyJSON to parse results
             let json = JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
-            var result = ""
             
             self.imageView.isHidden = true
             self.labelResults.isHidden = false
@@ -113,9 +150,11 @@ extension CenterViewController {
                 
                 for index in 0..<numberOfDrinks{
                     let drinkData : JSON = webEntities[index]
-                    result += drinkData["description"].stringValue
+                    self.result += drinkData["description"].stringValue
+                    self.resultArr.append(drinkData["description"].stringValue)
+                    print(self.resultArr)
                 }
-                self.labelResults.text! = result
+                self.labelResults.text! = self.result
             }
         })
         
