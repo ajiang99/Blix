@@ -128,7 +128,7 @@ extension CenterViewController {
                 self.compareWithDatabase()
                 print(self.elementsToReturn)
                 print(self.count)
-                //self.labelResults.text! = self.result
+                self.labelResults.text! = self.result
             }
         })
         
@@ -137,7 +137,7 @@ extension CenterViewController {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
-            
+            //imageView.image = pickedImage
             labelResults.isHidden = true
             
             // Base64 encode the image and create the request

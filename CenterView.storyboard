@@ -81,6 +81,7 @@
                         <outlet property="labelResults" destination="IyN-AY-Jqq" id="i3x-UY-vJE"/>
                         <segue destination="JMf-j5-V5o" kind="custom" identifier="rightSwipe" customClass="Segue2" customModule="Blix" customModuleProvider="target" id="uqf-OX-LAE"/>
                         <segue destination="x1Z-4V-IXu" kind="custom" identifier="leftSwipe" customClass="Segue1" customModule="Blix" customModuleProvider="target" id="Ys2-cm-SE8"/>
+                        <segue destination="koT-mR-5x0" kind="show" id="fJB-He-d7B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWJ-f0-lu2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -112,6 +113,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6j-4Y-fvh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="584" y="97"/>
+        </scene>
+        <!--Results-->
+        <scene sceneID="LD7-on-4ng">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Results" id="koT-mR-5x0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D4b-Uk-qKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1273" y="-710"/>
         </scene>
     </scenes>
 </document>
