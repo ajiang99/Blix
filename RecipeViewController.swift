@@ -17,28 +17,40 @@ class RecipeViewController: UIViewController {
     @IBOutlet var alcoholicPropertyLabel: UILabel!
 
     @IBOutlet var instructionsText: UITextView!
+    
     @IBOutlet var glassLabel: UILabel!
+    
     @IBOutlet var ingredientsText: UITextView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    @IBAction func backButton(_ sender: Any) {
+        performSegue(withIdentifier: "unwindToResultsController", sender: self)
+    }
 
-        // Do any additional setup after loading the view.
+
+    var drink: Drink?
+    
+    func customInit(currentDrink: Drink?){
+        print(currentDrink?.name)
+        guard let newDrink = currentDrink else{
+            return
+        }
+        print(newDrink.name)
+        print(newDrink.type)
+        nameLabel.text = newDrink.name
+        typeLabel.text = newDrink.type
+        alcoholicPropertyLabel.text = newDrink.alcoholicProperty
+        instructionsText.text = newDrink.instructions
+        glassLabel.text = newDrink.glassType
+        ingredientsText.text = newDrink.ingredients
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        customInit(currentDrink: drink)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
 
 }

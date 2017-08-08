@@ -12,6 +12,33 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     @IBOutlet var tableView: UITableView!
     
+    @IBAction func unwindToResultsController(segue:UIStoryboardSegue) { }
+    
+    
+    var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
+    
+    var shotArr = [Drink]()
+    
+    var cocktailArr = [Drink]()
+    
+    var beerArr = [Drink]()
+    
+    var cocoaArr = [Drink]()
+    
+    var coffeeTeaArr = [Drink]()
+    
+    var homemadeLiqeuerArr = [Drink]()
+    
+    var ordinaryDrinkArr = [Drink]()
+    
+    var shakeArr = [Drink]()
+    
+    var otherArr = [Drink]()
+    
+    var partyDrinkArr = [Drink]()
+    
+    var softDrink = [Drink]()
+    
     var sections = [
         Section(type: "Shot",
                 drinks: ["Fireball"],
@@ -21,6 +48,9 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        for drink in arrDrinks{
+            print (drink.name)
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -30,6 +60,55 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Dispose of any resources that can be recreated.
     }
     
+    func organizeDrinks(){
+        func organizeDrinks(){
+            for drink in arrDrinks{
+                switch drink.type{
+                    
+                case "Shot":
+                    shotArr.append(drink)
+                case "Cocktail":
+                    cocktailArr.append(drink)
+                case "Beer":
+                    beerArr.append(drink)
+                case "Cocoa":
+                    cocoaArr.append(drink)
+                case "Coffee / Tea":
+                    coffeeTeaArr.append(drink)
+                case "Homemade Liqueur":
+                    homemadeLiqeuerArr.append(drink)
+                case "Ordinary Drink":
+                    ordinaryDrinkArr.append(drink)
+                case "Milk / Float / Shake":
+                    shakeArr.append(drink)
+                case "Other/Unknown":
+                    otherArr.append(drink)
+                case "Punch / Party Drink":
+                    partyDrinkArr.append(drink)
+                case "Soft Drinks and Soda":
+                    softDrink.append(drink)
+                default:
+                    break
+                }
+            }
+        }
+    }
+    /*
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "viewRecipe" {
+                
+                let button: UITableViewCell = sender as! UITableViewCell
+                let RecipeViewController = segue.destination as! RecipeViewController
+                let index = Int(button.accessibilityIdentifier!)//parse int from button.accessibilityIdentifier
+                RecipeViewController.drink = arrDrinks[index!]
+                
+            }
+        }
+    }
+    */
+    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -63,6 +142,8 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].drinks[indexPath.row]
+
+        
         return cell
     }
     
@@ -76,7 +157,19 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         tableView.endUpdates()
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "toRecipe" {
+                let recipeViewController = segue.destination as! RecipeViewController
+                recipeViewController.drink = arrDrinks[0]
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

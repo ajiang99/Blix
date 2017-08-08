@@ -49,6 +49,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="OxL-bP-jH5" kind="show" identifier="toRecipe" id="0Vj-U0-Jh5"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -127,6 +130,14 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6o1-r6-hL9">
+                                                <rect key="frame" x="11" y="66" width="52" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Unwind"/>
+                                                <connections>
+                                                    <action selector="backButton:" destination="OxL-bP-jH5" eventType="touchUpInside" id="6QQ-Yx-e7G"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alcoholic Yes or No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-dE-8dK">
                                                 <rect key="frame" x="16" y="220" width="148" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -167,11 +178,13 @@
                         <outlet property="instructionsText" destination="LRV-dA-aMP" id="sPA-BH-aGg"/>
                         <outlet property="nameLabel" destination="CEC-b2-axv" id="3LM-KL-ujK"/>
                         <outlet property="typeLabel" destination="AlQ-A2-e9H" id="H4p-Wn-nyT"/>
+                        <segue destination="gDR-Fw-rR2" kind="unwind" identifier="unwindToResultsController" unwindAction="unwindToResultsControllerWithSegue:" id="LMG-vm-JeB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdO-Jk-y4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gDR-Fw-rR2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2959.1999999999998" y="-710.64467766116945"/>
+            <point key="canvasLocation" x="3305" y="-711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9m-sQ-qAS">
