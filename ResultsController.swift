@@ -39,7 +39,9 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var softDrinkArr = [Drink]()
     
-   var sections = [Section]()
+    var sections = [Section]()
+    
+    
 /*
     var sections = [
         Section(type: "Shot",
@@ -269,12 +271,19 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "toRecipe" {
-                let recipeViewController = segue.destination as! RecipeViewController
-                recipeViewController.drink = arrDrinks[0]
+        if let indexPath = tableView.indexPathForSelectedRow{
+            let selectedRow = indexPath.row
+            if let identifier = segue.identifier {
+                if identifier == "toRecipe" {
+                    let recipeViewController = segue.destination as! RecipeViewController
+                    //print(sections[section].drinks.count)
+                    print(sections[indexPath.section].drinks[indexPath.row])
+                    print(indexPath.section)
+                    //recipeViewController.drink = sections[indexPath.section].drinks[indexPath.row]
+                }
             }
         }
+        
     }
     
     /*
