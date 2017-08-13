@@ -61,4 +61,98 @@ class DatabaseParse{
         }
         return setDrinks
     }
+    
+    static func getIngredientsFromObj(drink: Drink) -> (Set<String>){
+        var setDrinks = Set<String>()
+        let str = drink.shopping
+        let arrDrinks = (str.components(separatedBy: "|"))
+        setDrinks = Set(arrDrinks)
+        return setDrinks
+    }
+    
+    //Takes drink array to be filtered and the names needed to be filtered out
+    static func filterNames(drinks: [Drink], names: [String]) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for name in names{
+            for drink in drinks{
+                if drink.name == name{
+                    filteredArr.append(drink)
+                }
+            }
+        }
+        return filteredArr
+    }
+    
+    //Takes drinkArr and type, returns filtreredArr
+    /*static func filterName(drinks: [Drink], type: String) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for drink in drinks{
+            if drink.type == type{
+                filteredArr.append(drink)
+            }
+        }
+        return filteredArr
+    }
+ */
+    
+    static func filterTypes(drinks: [Drink], types: [String]) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for type in types{
+            for drink in drinks{
+                if drink.type == type{
+                    filteredArr.append(drink)
+                }
+            }
+        }
+        return filteredArr
+    }
+    
+    static func filterIngredients(drinks: [Drink], ingredients: [String]) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for ingredientGiven in ingredients{
+            for drink in drinks{
+                for ingredientSearch in getIngredientsFromObj(drink: drink){
+                    if ingredientGiven == ingredientSearch{
+                        filteredArr.append(drink)
+                    }
+                }
+            }
+        }
+        return filteredArr
+    }
+    
+    
+    static func filterAlcoholicProperty(drinks: [Drink], property: String) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for drink in drinks{
+            if drink.alcoholicProperty == property{
+                filteredArr.append(drink)
+            }
+        }
+        return filteredArr
+    }
+    
+    static func filterTypes(drinks: [Drink], glasses: [String]) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for glass in glasses{
+            for drink in drinks{
+                if drink.glassType == glass{
+                    filteredArr.append(drink)
+                }
+            }
+        }
+        return filteredArr
+    }
+    
+    static func filterAlcoholicProperty(drinks: [Drink], id: String) -> [Drink]{
+        var filteredArr: [Drink] = []
+        for drink in drinks{
+            if drink.id == id{
+                filteredArr.append(drink)
+            }
+        }
+        return filteredArr
+    }
+    
+    
 }

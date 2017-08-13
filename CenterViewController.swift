@@ -23,9 +23,15 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     var resultSet = Set<String>()
     var elementsToReturn = [Dictionary<String,String>()]
     var count = 0
+    var arr : [String] = []
     
     //LABELS AND BUTTONS
     @IBOutlet var imageView: UIImageView!
+    
+    @IBAction func unwindToCenter(segue: UIStoryboardSegue) {
+    
+    
+    }
     
     @IBAction func loadImage(_ sender: Any) {
         imagePicker.allowsEditing = false
@@ -33,16 +39,22 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         present(imagePicker, animated: true, completion: nil)
     }
+    
+ 
     @IBOutlet var labelResults: UILabel!
     
     @IBAction func takePicture(_ sender: UIButton) {
-    }
-    @IBAction func leftSwipe(_ sender: UISwipeGestureRecognizer) {
-        performSegue(withIdentifier: "rightSwipe", sender: self)
-        
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
-    @IBAction func unwindToCenter(segue:UIStoryboardSegue) {
+    @IBAction func leftSwipe(_ sender: UISwipeGestureRecognizer) {
+        performSegue(withIdentifier: "rightSwipe", sender: self)
         
     }
     
@@ -87,6 +99,19 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         return super.segueForUnwinding(to: toViewController,from: fromViewController, identifier: identifier)!
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "centerToResults" {
+            //let thisController = UIViewController() as! ResultsController
+            //thisController.segueID = "center"
+            arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
+            let nav = segue.destination as! UINavigationController
+            let resultsController = nav.viewControllers[0] as! ResultsController
+            resultsController.filterTypeKey = arr
+            resultsController.segueID = "center"
+            print("arr equals: \(resultsController.filterTypeKey)")
+        }
+    }
 }
 
 
@@ -129,11 +154,13 @@ extension CenterViewController {
                 print(self.elementsToReturn)
                 print(self.count)
                 self.labelResults.text! = self.result
+                self.performSegue(withIdentifier: "centerToResults", sender: self)
             }
         })
         
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        result = ""
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.contentMode = .scaleAspectFit
             imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
@@ -148,6 +175,7 @@ extension CenterViewController {
         }
         
         dismiss(animated: true, completion: nil)
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

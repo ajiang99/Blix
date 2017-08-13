@@ -9,215 +9,98 @@
 import UIKit
 
 class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
-
+    
+    var segueID = ""
+    
     @IBOutlet var tableView: UITableView!
     
-    @IBAction func unwindToResultsController(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToRight(_ sender: Any) {
+        if segueID == "center"{
+            performSegue(withIdentifier: "unwindToCenter", sender: self)
+        }
+        
+        else{
+            performSegue(withIdentifier: "unwindToRight", sender: self)
+        }
+        
+        segueID = ""
+    }
     
+    /*
+     @IBAction func unwindToResultsController(segue:UIStoryboardSegue) {
+     sections.removeAll()
+     }
+     */
+    
+    var filterTypeKey: [String]!
     
     var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
     
-    var shotArr = [Drink]()
-    
-    var cocktailArr = [Drink]()
-    
-    var beerArr = [Drink]()
-    
-    var cocoaArr = [Drink]()
-    
-    var coffeeTeaArr = [Drink]()
-    
-    var homemadeLiqeuerArr = [Drink]()
-    
-    var ordinaryDrinkArr = [Drink]()
-    
-    var shakeArr = [Drink]()
-    
-    var otherArr = [Drink]()
-    
-    var partyDrinkArr = [Drink]()
-    
-    var softDrinkArr = [Drink]()
+    var typeDict: [String:[Drink]] = ["shot":[],"cocktail":[],"beer":[],"cocoa":[],"coffee":[],"liqueur":[],"ordinary":[],"shake":[],"other":[],"party":[],"soft":[]]
     
     var sections = [Section]()
     
-    
-/*
-    var sections = [
-        Section(type: "Shot",
-                drinks: ["Fireball"],
-                expanded: false
-            )
-    ]
- */
- 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.organizeDrinks()
         self.createSections()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //
     func organizeDrinks(){
         for drink in arrDrinks{
             switch drink.type{
             case "Shot":
-                shotArr.append(drink)
+                typeDict["shot"]?.append(drink)
             case "Cocktail":
-                cocktailArr.append(drink)
+                typeDict["cocktail"]?.append(drink)//cocktailArr.append(drink)
             case "Beer":
-                beerArr.append(drink)
+                typeDict["beer"]?.append(drink)//beerArr.append(drink)
             case "Cocoa":
-                cocoaArr.append(drink)
+                typeDict["cocoa"]?.append(drink)//cocoaArr.append(drink)
             case "Coffee / Tea":
-                coffeeTeaArr.append(drink)
+                typeDict["coffee"]?.append(drink)//coffeeTeaArr.append(drink)
             case "Homemade Liqueur":
-                homemadeLiqeuerArr.append(drink)
+                typeDict["liqueur"]?.append(drink)//homemadeLiqeuerArr.append(drink)
             case "Ordinary Drink":
-                ordinaryDrinkArr.append(drink)
+                typeDict["ordinary"]?.append(drink)//ordinaryDrinkArr.append(drink)
             case "Milk / Float / Shake":
-                shakeArr.append(drink)
+                typeDict["shake"]?.append(drink)//shakeArr.append(drink)
             case "Other/Unknown":
-                otherArr.append(drink)
+                typeDict["other"]?.append(drink)//otherArr.append(drink)
             case "Punch / Party Drink":
-                partyDrinkArr.append(drink)
+                typeDict["party"]?.append(drink)//partyDrinkArr.append(drink)
             case "Soft Drinks and Soda":
-                softDrinkArr.append(drink)
+                typeDict["soft"]?.append(drink)//softDrinkArr.append(drink)
             default:
                 break
             }
         }
     }
     
-    func createSections(){
-        
-        if !shotArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in shotArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Shot (\(shotArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-        
-        if !cocktailArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in cocktailArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Cocktail (\(cocktailArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        
-        if !coffeeTeaArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in coffeeTeaArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Coffee or Tea (\(coffeeTeaArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        
-        if !cocoaArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in cocoaArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Cocoa (\(cocoaArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        if !homemadeLiqeuerArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in homemadeLiqeuerArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Homemade Liqeuer (\(homemadeLiqeuerArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        if !ordinaryDrinkArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in ordinaryDrinkArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Ordinary Drink (\(ordinaryDrinkArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        if !shakeArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in shakeArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Milk, Float, or Shake (\(shakeArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        if !partyDrinkArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in partyDrinkArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Party Drink (\(partyDrinkArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-
-        if !softDrinkArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in softDrinkArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Soft Drink (\(softDrinkArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-        
-        if !otherArr.isEmpty{
-            var drinkNameArr = [String]()
-            for drink in otherArr{
-                drinkNameArr.append(drink.name)
-            }
-            let drinkSection = Section(type: "Other (\(otherArr.count))", drinks: drinkNameArr, expanded: false)
-            
-            sections.append(drinkSection)
-        }
-    }
- 
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "viewRecipe" {
-                
-                let button: UITableViewCell = sender as! UITableViewCell
-                let RecipeViewController = segue.destination as! RecipeViewController
-                let index = Int(button.accessibilityIdentifier!)//parse int from button.accessibilityIdentifier
-                RecipeViewController.drink = arrDrinks[index!]
-                
-            }
-        }
-    }
-    */
     
-
+    func createSections(){
+        for type in filterTypeKey{
+            var drinkNameArr = [String]()
+            var drinkObjArr = [Drink()]
+            for drink in typeDict[type]!{
+                drinkNameArr.append(drink.name)
+                drinkObjArr.append(drink)
+            }
+            
+            let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
+            
+            sections.append(drinkSection)
+        }
+        
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -251,7 +134,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].drinks[indexPath.row]
-
+        
         
         return cell
     }
@@ -276,25 +159,11 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             if let identifier = segue.identifier {
                 if identifier == "toRecipe" {
                     let recipeViewController = segue.destination as! RecipeViewController
-                    //print(sections[section].drinks.count)
-                    print(sections[indexPath.section].drinks[indexPath.row])
-                    print(indexPath.section)
-                    //recipeViewController.drink = sections[indexPath.section].drinks[indexPath.row]
+                    recipeViewController.drink = sections[indexPath.section].drinkObjs[indexPath.row]
                 }
             }
         }
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 

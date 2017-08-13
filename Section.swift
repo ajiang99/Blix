@@ -11,11 +11,14 @@ import Foundation
 struct Section{
     var type: String!
     var drinks: [String]!
+    var drinkObjs: [Drink]!
     var expanded: Bool!
     
-    init(type: String, drinks: [String], expanded: Bool ){
+    
+    init(type: String, drinks: [String], drinkObjs: [Drink], expanded: Bool ){
         self.type = type
         self.drinks = drinks
+        self.drinkObjs = drinkObjs
         self.expanded = expanded
     }
 }
