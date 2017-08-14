@@ -12,12 +12,11 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet var collectionView: UICollectionView!
     
-    let array:[String] = ["1","2","3","4","5","6","7","8","9","10"]
+    let array:[String] = ["1","2","3","4","5","6","7","8","9","10","11","12"]
     
     var arr:[String] = []
     
-    
-    let drinkDict : [Int:String] = [0:"cocktail",1:"shot",2:"beer",3:"coffee",4:"party",5:"liqueur", 6:"ordinary",7:"cocoa",8:"shake",9:"soft", 10:"other"]
+    let drinkDict : [Int:String] = [0:"cocktail",1:"shot",2:"beer",3:"coffee",4:"party",5:"liqueur", 6:"ordinary",7:"cocoa",8:"shake",9:"soft", 10:"other", 11: "all"]
 
     @IBAction func centerFromRight(_ sender: UISwipeGestureRecognizer) {
         performSegue(withIdentifier: "unwindFromRight", sender: self)
@@ -25,9 +24,6 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     @IBAction func unwindToRightView(segue:UIStoryboardSegue) { }
-
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

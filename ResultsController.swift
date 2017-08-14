@@ -13,6 +13,11 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var segueID = ""
     
     @IBOutlet var tableView: UITableView!
+
+    @IBAction func filterButton(_ sender: Any) {
+        performSegue(withIdentifier: "resultsToFilter", sender: self)
+    }
+    
     
     @IBAction func unwindToRight(_ sender: Any) {
         if segueID == "center"{
@@ -25,13 +30,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         segueID = ""
     }
-    
-    /*
-     @IBAction func unwindToResultsController(segue:UIStoryboardSegue) {
-     sections.removeAll()
-     }
-     */
-    
+
     var filterTypeKey: [String]!
     
     var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
@@ -86,18 +85,52 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     
     func createSections(){
-        for type in filterTypeKey{
-            var drinkNameArr = [String]()
+        
+        
+        if filterTypeKey.contains("all") != true
+        {
+            for type in filterTypeKey{
+                var drinkNameArr = [String]()
+                var drinkObjArr = [Drink()]
+                for drink in typeDict[type]!{
+                    drinkNameArr.append(drink.name)
+                    drinkObjArr.append(drink)
+                }
+            
+                let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
+            
+                sections.append(drinkSection)
+            }
+        }
+        else{
+            
+            
+            /*
+            var drinkNameArr = [String()]
             var drinkObjArr = [Drink()]
-            for drink in typeDict[type]!{
+            for drink in arrDrinks{
                 drinkNameArr.append(drink.name)
                 drinkObjArr.append(drink)
             }
+            let allDrinks = Section(type: "All", drinks: drinkNameArr, drinkObjs: drinkObjArr, expanded: false)
             
-            let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
-            
-            sections.append(drinkSection)
+            sections.append(allDrinks)
+            */
+            filterTypeKey = ["shot","cocktail","beer","cocoa","coffee","liqueur","ordinary","shake","other","party","soft"]
+            for type in filterTypeKey{
+                var drinkNameArr = [String]()
+                var drinkObjArr = [Drink()]
+                for drink in typeDict[type]!{
+                    drinkNameArr.append(drink.name)
+                    drinkObjArr.append(drink)
+                }
+                
+                let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
+                
+                sections.append(drinkSection)
+            }
         }
+        
         
     }
     
@@ -163,7 +196,6 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
             }
         }
-        
     }
 }
 

@@ -50,7 +50,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="gcJ-ox-uhr" kind="show" identifier="toRecipe" id="0Vj-U0-Jh5"/>
+                                            <segue destination="OxL-bP-jH5" kind="show" identifier="toRecipe" id="0Vj-U0-Jh5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -161,13 +161,119 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DcY-sb-DqJ"/>
-                    <connections>
-                        <outlet property="tableView" destination="6iP-Bc-7At" id="jl6-nQ-bxw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkZ-s5-WOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4138.3999999999996" y="-724.58770614692662"/>
+        </scene>
+        <!--Recipe View Controller-->
+        <scene sceneID="RfL-fT-lbY">
+            <objects>
+                <viewController id="OxL-bP-jH5" customClass="RecipeViewController" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="foi-en-07X"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fw7-0Y-M61"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vNh-B5-zxL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-8Q-5Py">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwv-e4-Ym2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEC-b2-axv">
+                                                <rect key="frame" x="18" y="24" width="252" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlQ-A2-e9H">
+                                                <rect key="frame" x="18" y="127" width="38" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Ingredients" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fe0-GN-quL">
+                                                <rect key="frame" x="8" y="340" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Instructions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LRV-dA-aMP">
+                                                <rect key="frame" x="8" y="553" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type of Glass" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oaj-Ub-0RC">
+                                                <rect key="frame" x="27" y="461" width="104" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6o1-r6-hL9">
+                                                <rect key="frame" x="11" y="66" width="52" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Unwind"/>
+                                                <connections>
+                                                    <action selector="backButton:" destination="OxL-bP-jH5" eventType="touchUpInside" id="6QQ-Yx-e7G"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alcoholic Yes or No" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9A-dE-8dK">
+                                                <rect key="frame" x="16" y="220" width="148" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="b47-Iq-Phz"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dwv-e4-Ym2" firstAttribute="top" secondItem="3h3-8Q-5Py" secondAttribute="top" id="1qa-Gz-cH3"/>
+                                    <constraint firstAttribute="bottom" secondItem="dwv-e4-Ym2" secondAttribute="bottom" id="K8w-k0-k9J"/>
+                                    <constraint firstItem="dwv-e4-Ym2" firstAttribute="leading" secondItem="3h3-8Q-5Py" secondAttribute="leading" id="U8U-7x-oH3"/>
+                                    <constraint firstAttribute="trailing" secondItem="dwv-e4-Ym2" secondAttribute="trailing" id="VnP-WU-b8x"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3h3-8Q-5Py" firstAttribute="top" secondItem="vNh-B5-zxL" secondAttribute="top" id="F7L-Yz-6bA"/>
+                            <constraint firstItem="Fw7-0Y-M61" firstAttribute="top" secondItem="3h3-8Q-5Py" secondAttribute="bottom" id="O3g-JO-pxJ"/>
+                            <constraint firstAttribute="trailing" secondItem="3h3-8Q-5Py" secondAttribute="trailing" id="RBU-NF-393"/>
+                            <constraint firstItem="3h3-8Q-5Py" firstAttribute="leading" secondItem="vNh-B5-zxL" secondAttribute="leading" id="fRJ-j7-ciq"/>
+                            <constraint firstItem="dwv-e4-Ym2" firstAttribute="width" secondItem="vNh-B5-zxL" secondAttribute="width" id="pPM-Y6-V3N"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1000"/>
+                    <connections>
+                        <outlet property="alcoholicPropertyLabel" destination="q9A-dE-8dK" id="Trf-Z7-Xnw"/>
+                        <outlet property="glassLabel" destination="Oaj-Ub-0RC" id="ODB-yT-jhC"/>
+                        <outlet property="ingredientsText" destination="Fe0-GN-quL" id="9V6-2R-3PM"/>
+                        <outlet property="instructionsText" destination="LRV-dA-aMP" id="sPA-BH-aGg"/>
+                        <outlet property="nameLabel" destination="CEC-b2-axv" id="3LM-KL-ujK"/>
+                        <outlet property="typeLabel" destination="AlQ-A2-e9H" id="H4p-Wn-nyT"/>
+                        <segue destination="gDR-Fw-rR2" kind="unwind" identifier="unwindToResultsController" unwindAction="unwindToResultsControllerWithSegue:" id="LMG-vm-JeB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FdO-Jk-y4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gDR-Fw-rR2" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2212" y="441"/>
         </scene>
         <!--CenterView-->
         <scene sceneID="0I0-xI-Iqg">
@@ -180,6 +286,7 @@
         <!--Navigation Controller-->
         <scene sceneID="g9m-sQ-qAS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dea-Gl-41M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JkA-EU-4ed" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qC6-Lp-ThG">
@@ -191,7 +298,6 @@
                         <segue destination="c3T-6Z-blU" kind="relationship" relationship="rootViewController" id="Gxr-xp-Vs9"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dea-Gl-41M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1272.8" y="-710.19490254872574"/>
         </scene>
@@ -212,14 +318,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVG-Uj-6em" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3199.1999999999998" y="-724.58770614692662"/>
-        </scene>
-        <!--Recipe-->
-        <scene sceneID="Igl-Hz-yeT">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Recipe" id="gcJ-ox-uhr" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9MD-jK-2Iq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2212" y="23"/>
         </scene>
     </scenes>
 </document>
