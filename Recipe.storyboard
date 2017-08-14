@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OxL-bP-jH5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3h3-8Q-5Py">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="956"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwv-e4-Ym2">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
@@ -97,7 +101,9 @@
                             <constraint firstItem="dwv-e4-Ym2" firstAttribute="width" secondItem="vNh-B5-zxL" secondAttribute="width" id="pPM-Y6-V3N"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
@@ -107,13 +113,14 @@
                         <outlet property="instructionsText" destination="LRV-dA-aMP" id="sPA-BH-aGg"/>
                         <outlet property="nameLabel" destination="CEC-b2-axv" id="3LM-KL-ujK"/>
                         <outlet property="typeLabel" destination="AlQ-A2-e9H" id="H4p-Wn-nyT"/>
-                        <segue destination="gDR-Fw-rR2" kind="unwind" identifier="unwindToResultsController" unwindAction="unwindToResultsControllerWithSegue:" id="LMG-vm-JeB"/>
+                        <segue destination="gDR-Fw-rR2" kind="unwind" identifier="unwindToLeft" unwindAction="unwindToLeftViewWithSegue:" id="Q9e-6F-c1C"/>
+                        <segue destination="gDR-Fw-rR2" kind="unwind" identifier="unwindToResults" unwindAction="unwindToResultsWithSegue:" id="IJJ-kZ-o7z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FdO-Jk-y4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gDR-Fw-rR2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2212" y="441"/>
+            <point key="canvasLocation" x="2212" y="440.7796101949026"/>
         </scene>
     </scenes>
 </document>

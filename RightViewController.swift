@@ -20,7 +20,6 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
 
     @IBAction func centerFromRight(_ sender: UISwipeGestureRecognizer) {
         performSegue(withIdentifier: "unwindFromRight", sender: self)
-        print("center from right")
     }
     
     @IBAction func unwindToRightView(segue:UIStoryboardSegue) { }
@@ -56,31 +55,21 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
         return cell
     }
     
-
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         arr = []
         arr.append(drinkDict[indexPath.item]!)
-        
-        
         performSegue(withIdentifier: "rightViewToResults", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rightViewToResults" {
-            //if let resultsController = segue.destination as? ResultsController {
-                //print(arr)
                 let nav = segue.destination as! UINavigationController
-                //let nav = segue.destination as! ResultsController
-    
-               // ResultsController.segueID = "right"
             
                 let resultsController = nav.viewControllers[0] as! ResultsController
                 resultsController.segueID = "right"
                 resultsController.filterTypeKey = arr
                 print("arr equals: \(resultsController.filterTypeKey)")
-                
-            //}
+
         }
     }
 }

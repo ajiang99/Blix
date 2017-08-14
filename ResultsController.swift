@@ -30,6 +30,9 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         segueID = ""
     }
+    
+    @IBAction func unwindToResults(segue:UIStoryboardSegue) { }
+
 
     var filterTypeKey: [String]!
     
@@ -45,6 +48,11 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.createSections()
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //self.navigationController?.isNavigationBarHidden = false
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,10 +91,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    
     func createSections(){
-        
-        
         if filterTypeKey.contains("all") != true
         {
             for type in filterTypeKey{
@@ -96,9 +101,8 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
                     drinkNameArr.append(drink.name)
                     drinkObjArr.append(drink)
                 }
-            
                 let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
-            
+    
                 sections.append(drinkSection)
             }
         }
@@ -191,6 +195,8 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             let selectedRow = indexPath.row
             if let identifier = segue.identifier {
                 if identifier == "toRecipe" {
+                    let recipeController = segue.destination as! RecipeViewController
+                    recipeController.segueID = "results"
                     let recipeViewController = segue.destination as! RecipeViewController
                     recipeViewController.drink = sections[indexPath.section].drinkObjs[indexPath.row]
                 }

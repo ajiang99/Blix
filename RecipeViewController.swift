@@ -22,11 +22,18 @@ class RecipeViewController: UIViewController {
     
     @IBOutlet var ingredientsText: UITextView!
     
+    var segueID = ""
+    
     @IBAction func backButton(_ sender: Any) {
-        performSegue(withIdentifier: "unwindToResultsController", sender: self)
+        print(segueID)
+        if segueID == "results"{
+            performSegue(withIdentifier: "unwindToResults", sender: self)
+        }
+        else{
+            performSegue(withIdentifier: "unwindToLeft", sender: self)
+        }
     }
-
-
+    
     var drink: Drink?
     
     func customInit(currentDrink: Drink?){
@@ -44,6 +51,16 @@ class RecipeViewController: UIViewController {
         ingredientsText.text = newDrink.ingredients
     }
     
+    
+    override func viewDidLoad() {
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+
+    }
     override func viewWillAppear(_ animated: Bool) {
         customInit(currentDrink: drink)
     }

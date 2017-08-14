@@ -34,7 +34,9 @@ class Segue1: UIStoryboardSegue {
                     secondClassView?.frame = (secondClassView?.frame.offsetBy(dx: screenWidth, dy: 0))!
                     
                 }, completion: {(Finished) -> Void in
-                                        self.source.present(self.destination as UIViewController, animated: false, completion: nil)
+                        self.source.present(self.destination as UIViewController, animated: false, completion: nil)
+                    
+                    
 
                 })
                 

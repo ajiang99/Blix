@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storyboard = UIStoryboard(name: "CenterView", bundle: nil)
         
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "CenterView")
+        let initialViewController = storyboard.instantiateInitialViewController()
         
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()

@@ -13,16 +13,17 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet var tableView: UITableView!
     
     @IBAction func centerFromLeft(_ sender: UISwipeGestureRecognizer) {
-        print("center from left")
         performSegue(withIdentifier: "unwindFromLeft", sender: self)
-
+        
     }
+    
+    @IBAction func unwindToLeftView(segue:UIStoryboardSegue) { }
+    
+    //var navigationBarAppearance = UINavigationBar.appearance()
     
     let arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
     
     var nameArr: [String] = []
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrDrinks.count
@@ -34,20 +35,25 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return(cell)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         for drink in arrDrinks{
             nameArr.append(drink.name)
         }
-
-        // Do any additional setup after loading the view.
+        
+       // navigationBarAppearance.barTintColor = UIColor.green
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -56,11 +62,20 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(tableView.indexPathForSelectedRow!)
         if let indexPath = tableView.indexPathForSelectedRow{
             //let selectedRow = indexPath.row
             if let identifier = segue.identifier {
                 if identifier == "toRecipeFromLeft" {
+                    
+                    
+                    //let thisController = UIViewController() as! ResultsController
+
+                    //let nav = segue.destination as! UINavigationController
+                    //let recipeController = nav.viewControllers[0] as! RecipeViewController
+                    let recipeController = segue.destination as! RecipeViewController
+
+                    recipeController.segueID = "left"
+
                     let recipeViewController = segue.destination as! RecipeViewController
                     recipeViewController.drink = arrDrinks[indexPath.row]
                 }
@@ -68,7 +83,4 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
     }
-    
-
-
 }

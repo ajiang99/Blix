@@ -60,6 +60,7 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func rightSwipe(_ sender: UISwipeGestureRecognizer) {
         performSegue(withIdentifier: "leftSwipe", sender: self)
+        
     }
     
     @IBOutlet var rightSwipe: UISwipeGestureRecognizer!
