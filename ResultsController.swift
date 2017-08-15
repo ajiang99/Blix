@@ -106,11 +106,12 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         }
         else{
-            
-            filterTypeKey = ["shot","cocktail","beer","cocoa","coffee","liqueur","ordinary","shake","other","party","soft"]
+            let index = filterTypeKey.index(of: "all")
+            filterTypeKey.remove(at: index!)
             for type in filterTypeKey{
                 var drinkNameArr = [String]()
                 var drinkObjArr = [Drink()]
+                print(filterTypeKey)
                 for drink in typeDict[type]!{
                     drinkNameArr.append(drink.name)
                     drinkObjArr.append(drink)

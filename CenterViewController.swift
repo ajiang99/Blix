@@ -5,7 +5,6 @@
    //  Created by Andrew Jiang on 7/27/17.
    //  Copyright © 2017 Make School. All rights reserved.
    //
-   //gucci
 import UIKit
 import SwiftyJSON
 
@@ -33,6 +32,9 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBAction func unwindToCenterFromFilter(segue:UIStoryboardSegue) { }
 
     
+    @IBAction func toManualEntry(_ sender: Any) {
+        performSegue(withIdentifier: "toManualEntry", sender: self)
+    }
     @IBAction func loadImage(_ sender: Any) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
