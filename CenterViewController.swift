@@ -28,10 +28,10 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     //LABELS AND BUTTONS
     @IBOutlet var imageView: UIImageView!
     
-    @IBAction func unwindToCenter(segue: UIStoryboardSegue) {
+    @IBAction func unwindToCenter(segue: UIStoryboardSegue) {}
     
-    
-    }
+    @IBAction func unwindToCenterFromFilter(segue:UIStoryboardSegue) { }
+
     
     @IBAction func loadImage(_ sender: Any) {
         imagePicker.allowsEditing = false
@@ -102,14 +102,15 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "centerToResults" {
+        if segue.identifier == "centerToResults"{ //actuallyCenterToFilter 
             //let thisController = UIViewController() as! ResultsController
             //thisController.segueID = "center"
             arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
             let nav = segue.destination as! UINavigationController
-            let resultsController = nav.viewControllers[0] as! ResultsController
+            let resultsController = nav.viewControllers[0] as! FilterController
             resultsController.filterTypeKey = arr
             resultsController.segueID = "center"
+            resultsController.selfSegueID = "center"
             print("arr equals: \(resultsController.filterTypeKey)")
         }
     }

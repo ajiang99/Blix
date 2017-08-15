@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JkA-EU-4ed">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nzf-CG-TVX">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -88,9 +88,6 @@
                                     <action selector="filterButton:" destination="c3T-6Z-blU" eventType="touchUpInside" id="Hdo-fl-msJ"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <segue destination="Nzf-CG-TVX" kind="show" identifier="resultsToFilter" id="emY-i8-0AM"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -102,7 +99,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPI-ki-Ne0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="4nA-xe-4MS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2212" y="-710.19490254872574"/>
+            <point key="canvasLocation" x="2212" y="-663"/>
         </scene>
         <!--Filter Controller-->
         <scene sceneID="bkc-Pu-bcG">
@@ -120,13 +117,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CU0-iN-uXi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filterCell" id="CU0-iN-uXi" customClass="FilterCustomCell" customModule="Blix" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CU0-iN-uXi" id="5WC-DL-a7b">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="12" translatesAutoresizingMaskIntoConstraints="NO" id="uTv-ot-fLH">
+                                                    <rect key="frame" x="294" y="0.0" width="51" height="36"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="uTv-ot-fLH" secondAttribute="bottom" constant="8" id="LSZ-KD-UTP"/>
+                                                <constraint firstItem="uTv-ot-fLH" firstAttribute="leading" secondItem="5WC-DL-a7b" secondAttribute="leading" constant="294" id="Mbm-nf-LX7"/>
+                                                <constraint firstAttribute="trailing" secondItem="uTv-ot-fLH" secondAttribute="trailing" constant="30" id="ayh-Yy-eyQ"/>
+                                                <constraint firstItem="uTv-ot-fLH" firstAttribute="top" secondItem="5WC-DL-a7b" secondAttribute="top" id="fJK-Hl-TfY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="selectedCell" destination="uTv-ot-fLH" id="NTg-wY-Sc6"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="labelCell" textLabel="yZJ-eb-AhH" style="IBUITableViewCellStyleDefault" id="M3e-Ii-T6H">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -160,14 +171,39 @@
                             <constraint firstItem="6iP-Bc-7At" firstAttribute="leading" secondItem="tc0-rB-0FV" secondAttribute="leading" id="niR-gi-NTd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DcY-sb-DqJ"/>
+                    <navigationItem key="navigationItem" id="DcY-sb-DqJ">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="UJg-ds-miC">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2lX-YP-jze">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="qv2-uX-CcA" eventType="touchUpInside" id="Lcx-j9-vid"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="7d7-zu-1St">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bNl-Wt-tHC">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButton:" destination="qv2-uX-CcA" eventType="touchUpInside" id="BcF-MS-hWF"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="6iP-Bc-7At" id="jl6-nQ-bxw"/>
+                        <segue destination="JkA-EU-4ed" kind="show" identifier="filterToResults" id="C3X-3j-YHR"/>
+                        <segue destination="NiV-qW-eHg" kind="unwind" identifier="unwindToCenterFromFilter" unwindAction="unwindToCenterFromFilterWithSegue:" id="g36-gI-SC7"/>
+                        <segue destination="NiV-qW-eHg" kind="unwind" identifier="unwindToRightFromFilter" unwindAction="unwindToRightFromFilterWithSegue:" id="TAA-YW-QvP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkZ-s5-WOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="NiV-qW-eHg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4138.3999999999996" y="-724.58770614692662"/>
+            <point key="canvasLocation" x="501.60000000000002" y="-653.52323838080963"/>
         </scene>
         <!--CenterView-->
         <scene sceneID="0I0-xI-Iqg">
@@ -175,7 +211,7 @@
                 <viewControllerPlaceholder storyboardName="CenterView" referencedIdentifier="CenterView" id="5sQ-5c-cXu" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Snv-Cy-v7f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="663" y="-624"/>
+            <point key="canvasLocation" x="-1103" y="-663"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9m-sQ-qAS">
@@ -193,7 +229,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dea-Gl-41M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="-710.19490254872574"/>
+            <point key="canvasLocation" x="1374" y="-654"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8nk-c3-6Xd">
@@ -211,7 +247,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVG-Uj-6em" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3199" y="-710"/>
+            <point key="canvasLocation" x="-273" y="-652"/>
         </scene>
         <!--Recipe-->
         <scene sceneID="Igl-Hz-yeT">
@@ -222,4 +258,7 @@
             <point key="canvasLocation" x="2212" y="23"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="12" width="128" height="128"/>
+    </resources>
 </document>

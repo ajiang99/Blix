@@ -24,6 +24,9 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBAction func unwindToRightView(segue:UIStoryboardSegue) { }
     
+    @IBAction func unwindToRightFromFilter(segue:UIStoryboardSegue) { }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let itemSize = UIScreen.main.bounds.width/3 - 3
@@ -65,9 +68,10 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
         if segue.identifier == "rightViewToResults" {
                 let nav = segue.destination as! UINavigationController
             
-                let resultsController = nav.viewControllers[0] as! ResultsController
-                resultsController.segueID = "right"
+                let resultsController = nav.viewControllers[0] as! FilterController
                 resultsController.filterTypeKey = arr
+                resultsController.selfSegueID = "right"
+                resultsController.segueID = "right"
                 print("arr equals: \(resultsController.filterTypeKey)")
 
         }

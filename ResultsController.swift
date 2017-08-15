@@ -18,7 +18,6 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         performSegue(withIdentifier: "resultsToFilter", sender: self)
     }
     
-    
     @IBAction func unwindToRight(_ sender: Any) {
         if segueID == "center"{
             performSegue(withIdentifier: "unwindToCenter", sender: self)
@@ -108,18 +107,6 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else{
             
-            
-            /*
-            var drinkNameArr = [String()]
-            var drinkObjArr = [Drink()]
-            for drink in arrDrinks{
-                drinkNameArr.append(drink.name)
-                drinkObjArr.append(drink)
-            }
-            let allDrinks = Section(type: "All", drinks: drinkNameArr, drinkObjs: drinkObjArr, expanded: false)
-            
-            sections.append(allDrinks)
-            */
             filterTypeKey = ["shot","cocktail","beer","cocoa","coffee","liqueur","ordinary","shake","other","party","soft"]
             for type in filterTypeKey{
                 var drinkNameArr = [String]()

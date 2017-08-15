@@ -22,7 +22,25 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
             expanded: false)
     
     ]
-
+    
+    var filterTypeKey: [String]!
+    
+    var segueID = ""
+    
+    var selfSegueID = ""
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        if selfSegueID == "center"{
+            performSegue(withIdentifier: "unwindToCenterFromFilter", sender: self)
+        }
+        else{
+            performSegue(withIdentifier: "unwindToRightFromFilter", sender: self)
+        }
+    }
+    
+    @IBAction func doneButton(_ sender: Any) {
+        performSegue(withIdentifier: "filterToResults", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -71,13 +89,15 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].attributes[indexPath.row]
-        
+        cell.imageView?.image = UIImage(named:"12")
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        //cell?.backgroundColor = UIColor.blue
     }
  
     
@@ -90,5 +110,18 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         tableView.endUpdates()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "filterToResults" {
+            let nav = segue.destination as! UINavigationController
+            
+            let resultsController = nav.viewControllers[0] as! ResultsController
+            resultsController.segueID = self.segueID
+            resultsController.filterTypeKey = self.filterTypeKey
+            print("arr equals: \(resultsController.filterTypeKey)")
+            
+        }
+    }
+    
 
 }

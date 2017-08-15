@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet var tableView: UITableView!
     
@@ -19,19 +19,33 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func unwindToLeftView(segue:UIStoryboardSegue) { }
     
-    //var navigationBarAppearance = UINavigationBar.appearance()
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    var isSearching = false
+    
+    var filteredData:[String] = []
+        
     let arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
     
     var nameArr: [String] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if isSearching{
+            return filteredData.count
+        }
         return arrDrinks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "labelCell")
-        cell.textLabel?.text = nameArr[indexPath.row]
+        if isSearching{
+            cell.textLabel?.text = filteredData[indexPath.row]
+        }
+        else{
+            cell.textLabel?.text = nameArr[indexPath.row]
+        }
         
         return(cell)
     }
@@ -43,8 +57,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
             nameArr.append(drink.name)
         }
         
-       // navigationBarAppearance.barTintColor = UIColor.green
-        
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +73,17 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "toRecipeFromLeft", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        if searchBar.text == nil || searchBar.text == ""{
+            isSearching = false
+            tableView.reloadData()
+        }else{
+            isSearching = true
+            filteredData = nameArr.filter({$0.lowercased().contains(searchBar.text!.lowercased())})
+            tableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
