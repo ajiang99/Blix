@@ -80,15 +80,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LqL-4a-t9Q">
-                                <rect key="frame" x="7" y="-189" width="360" height="530"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="Fph-d3-5PR"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="awL-Jz-sDy"/>
-                                    <constraint firstAttribute="height" constant="530" id="dGM-XU-5dh"/>
-                                    <constraint firstAttribute="width" constant="360" id="zxz-0k-Zth"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IyN-AY-Jqq">
                                 <rect key="frame" x="16" y="389" width="314" height="21"/>
                                 <constraints>
@@ -132,6 +123,15 @@
                                     <action selector="toManualEntry:" destination="LeU-S4-Xt9" eventType="touchUpInside" id="5JJ-fd-8lb"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqL-4a-t9Q">
+                                <rect key="frame" x="7" y="-77" width="360" height="530"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="Fph-d3-5PR"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="awL-Jz-sDy"/>
+                                    <constraint firstAttribute="height" constant="530" id="dGM-XU-5dh"/>
+                                    <constraint firstAttribute="width" constant="360" id="zxz-0k-Zth"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.63921568627450975" green="0.46666666666666667" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
