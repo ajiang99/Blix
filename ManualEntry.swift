@@ -63,7 +63,7 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func configureSimpleSearchTextField() {
         
-        let arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
+        let arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
         
         var drinkNameArr: [String] = []
         for drink in arrDrinks{

@@ -25,7 +25,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var filteredData:[String] = []
         
-    let arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
+    let arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
     
     var nameArr: [String] = []
     

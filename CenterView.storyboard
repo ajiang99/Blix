@@ -123,22 +123,12 @@
                                     <action selector="toManualEntry:" destination="LeU-S4-Xt9" eventType="touchUpInside" id="5JJ-fd-8lb"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqL-4a-t9Q">
-                                <rect key="frame" x="7" y="-77" width="360" height="530"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="530" id="Fph-d3-5PR"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="360" id="awL-Jz-sDy"/>
-                                    <constraint firstAttribute="height" constant="530" id="dGM-XU-5dh"/>
-                                    <constraint firstAttribute="width" constant="360" id="zxz-0k-Zth"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.63921568627450975" green="0.46666666666666667" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="v1m-km-d04" secondAttribute="trailing" constant="108" id="6WO-oe-OAj"/>
                             <constraint firstItem="tFQ-Ih-8Ou" firstAttribute="top" secondItem="v1m-km-d04" secondAttribute="bottom" constant="168" id="8DC-5p-5bM"/>
-                            <constraint firstItem="LqL-4a-t9Q" firstAttribute="leading" secondItem="wyk-6d-RX7" secondAttribute="leading" constant="7" id="FSA-aq-HHo"/>
                             <constraint firstItem="4zg-K0-Zfu" firstAttribute="top" secondItem="IyN-AY-Jqq" secondAttribute="bottom" constant="51" id="P8c-of-uJ4"/>
                             <constraint firstItem="4zg-K0-Zfu" firstAttribute="leading" secondItem="wyk-6d-RX7" secondAttribute="leadingMargin" constant="61" id="Sqq-mC-1cC"/>
                             <constraint firstItem="v1m-km-d04" firstAttribute="leading" secondItem="4zg-K0-Zfu" secondAttribute="trailing" constant="40" id="U08-BB-Ggm"/>
@@ -146,10 +136,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="IyN-AY-Jqq" secondAttribute="trailing" constant="29" id="azh-6c-zb6"/>
                             <constraint firstItem="v1m-km-d04" firstAttribute="leading" secondItem="4zg-K0-Zfu" secondAttribute="trailing" constant="40" id="fw7-tY-d4o"/>
                             <constraint firstItem="IyN-AY-Jqq" firstAttribute="leading" secondItem="wyk-6d-RX7" secondAttribute="leadingMargin" id="hfc-BQ-eQp"/>
-                            <constraint firstItem="LqL-4a-t9Q" firstAttribute="top" secondItem="wyk-6d-RX7" secondAttribute="top" constant="-189" id="imB-7M-Dev"/>
-                            <constraint firstAttribute="trailing" secondItem="LqL-4a-t9Q" secondAttribute="trailing" constant="8" id="nMr-lH-wbf"/>
-                            <constraint firstItem="IyN-AY-Jqq" firstAttribute="top" secondItem="LqL-4a-t9Q" secondAttribute="bottom" constant="48" id="nrh-oK-OMI"/>
-                            <constraint firstItem="IyN-AY-Jqq" firstAttribute="top" secondItem="LqL-4a-t9Q" secondAttribute="bottom" constant="48" id="qVe-k9-aQ4"/>
                             <constraint firstItem="tFQ-Ih-8Ou" firstAttribute="top" secondItem="4zg-K0-Zfu" secondAttribute="bottom" constant="176" id="rsn-A4-w9Q"/>
                             <constraint firstItem="v1m-km-d04" firstAttribute="top" secondItem="IyN-AY-Jqq" secondAttribute="bottom" constant="43" id="tCF-4b-Gew"/>
                         </constraints>
@@ -160,7 +146,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="sdU-1D-QtC"/>
                     <connections>
-                        <outlet property="imageView" destination="LqL-4a-t9Q" id="IxC-so-39p"/>
                         <outlet property="labelResults" destination="IyN-AY-Jqq" id="i3x-UY-vJE"/>
                         <segue destination="JMf-j5-V5o" kind="custom" identifier="rightSwipe" customClass="Segue2" customModule="Blix" customModuleProvider="target" id="uqf-OX-LAE"/>
                         <segue destination="x1Z-4V-IXu" kind="custom" identifier="leftSwipe" customClass="Segue1" customModule="Blix" customModuleProvider="target" id="Ys2-cm-SE8"/>

@@ -35,7 +35,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
 
     var filterTypeKey: [String]!
     
-    var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getSwiftArrayFromPlist(name: "Drinks"), info: "Cherry")
+    var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
     
     var typeDict: [String:[Drink]] = ["shot":[],"cocktail":[],"beer":[],"cocoa":[],"coffee":[],"liqueur":[],"ordinary":[],"shake":[],"other":[],"party":[],"soft":[]]
     
@@ -61,10 +61,12 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     //
     func organizeDrinks(){
         for drink in arrDrinks{
+            print (drink.type)
+            print(typeDict["cocktail"]?.count)
             switch drink.type{
             case "Shot":
                 typeDict["shot"]?.append(drink)
-            case "Cocktail":
+            case "Cocktails":
                 typeDict["cocktail"]?.append(drink)//cocktailArr.append(drink)
             case "Beer":
                 typeDict["beer"]?.append(drink)//beerArr.append(drink)

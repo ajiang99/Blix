@@ -24,9 +24,7 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     var count = 0
     var arr : [String] = []
     
-    //LABELS AND BUTTONS
-    @IBOutlet var imageView: UIImageView!
-    
+    //LABELS AND BUTTONS    
     @IBAction func unwindToCenter(segue: UIStoryboardSegue) {}
     
     @IBAction func unwindToCenterFromFilter(segue:UIStoryboardSegue) { }
@@ -77,6 +75,7 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
         let totArr = DatabaseParse.getSwiftArrayFromPlist(name: "Drinks")
         //print(getDataCrude(array: totArr, data: "24 karat nightmare"))
         print(DatabaseParse.getIngredients(array: totArr))
+        //print(DatabaseParse.readJson())
         
     }
     
@@ -131,7 +130,7 @@ extension CenterViewController {
             let json = JSON(data: dataToParse)
             let errorObj: JSON = json["error"]
             
-            self.imageView.isHidden = true
+            //self.imageView.isHidden = true
             self.labelResults.isHidden = false
             
             // Check for errors
@@ -166,8 +165,8 @@ extension CenterViewController {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         result = ""
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.contentMode = .scaleAspectFit
-            imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
+            //imageView.contentMode = .scaleAspectFit
+            //imageView.isHidden = true // You could optionally display the image here by setting imageView.image = pickedImage
             //imageView.image = pickedImage
             labelResults.isHidden = true
             
