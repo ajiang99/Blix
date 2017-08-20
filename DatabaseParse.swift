@@ -50,6 +50,8 @@ class DatabaseParse{
     static func getDataFromName(array: [[String : Any]]) -> [Drink]{
         var arrDrinks: [Drink] = []
         for drink in array{
+            
+            var name: String
             //if drink["id"] as! String == drink["id"]{//data{
             guard let id = drink["id"] as? Int else{
                 break
@@ -66,9 +68,20 @@ class DatabaseParse{
             
             print(drink["title"]!)
             
+            if let nameCheck = drink["title"] as? String{
+                name = (drink["title"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+                print(name)
+                
+            }else{
+                continue
+            }
+            
+            
+            /*
             guard let name = drink["title"] as? String else{
                 continue
             }
+            */
             
             guard let content = drink["content"] as? String else{
                 continue
@@ -114,15 +127,32 @@ class DatabaseParse{
     
     static func getIngredientsFromObj(drink: Drink) -> (Set<String>){
         
-        let start = drink.content.index(drink.content.startIndex, offsetBy: (29 + drink.content.characters.count))
+        let start = drink.content.index(drink.content.startIndex, offsetBy: (30 + drink.name.characters.count))
         let end = drink.content.index(drink.content.endIndex, offsetBy: -35)
         let range = start..<end
         
         let newStr = drink.content.substring(with: range)
         
-        let ingredientsArr = newStr.components(separatedBy: ",")
+        let ingredientsArr = newStr.components(separatedBy: ", ")
         
-        let setDrinks = Set(ingredientsArr)
+        var reformattedIngredientsArr: [String] = []
+        
+        for ingredient in ingredientsArr{
+            ingredient.trimmingCharacters(in: .whitespacesAndNewlines)
+            reformattedIngredientsArr.append(ingredient)
+            
+            let last = reformattedIngredientsArr[reformattedIngredientsArr.endIndex - 1]
+            
+            let lastTwoIngredients = last.components(separatedBy: " and ")
+            
+            reformattedIngredientsArr += reformattedIngredientsArr + lastTwoIngredients
+            
+            //let setLastIngredients = Set(reformattedIngredientsArr.endIndex.components(seperatedBy: " "))
+            
+            //if ingredient.
+        }
+        
+        let setDrinks = Set(reformattedIngredientsArr)
         
         return setDrinks
         //name starts AT 23 (aka after 22) 

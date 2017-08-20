@@ -12,13 +12,6 @@
         <!--LeftView-->
         <scene sceneID="VZa-9I-VuF">
             <objects>
-                <swipeGestureRecognizer direction="left" id="5t2-7b-VYV" userLabel="centerFromLeft">
-                    <connections>
-                        <action selector="centerFromLeft:" destination="fJZ-Pe-lQQ" id="YTh-8a-RQQ"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="guY-jt-n0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="ZB6-7C-pQ6" userLabel="Exit" sceneMemberID="exit"/>
                 <viewController storyboardIdentifier="LeftView" title="LeftView" id="fJZ-Pe-lQQ" customClass="LeftViewController" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MRX-76-nJ3"/>
@@ -41,7 +34,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gsN-s8-c1t" id="alf-vv-LeF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -68,13 +61,20 @@
                         </connections>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Search" id="a2V-YY-uSe"/>
+                    <navigationItem key="navigationItem" title="Search" id="qmd-ta-ux8"/>
                     <connections>
                         <outlet property="searchBar" destination="JDG-zu-ijt" id="cBm-il-3yQ"/>
                         <outlet property="tableView" destination="UDT-iN-iOc" id="bX4-JV-nAh"/>
                         <segue destination="ZB6-7C-pQ6" kind="unwind" identifier="unwindFromLeft" unwindAction="unwindToCenterWithSegue:" id="mf0-vz-wVf"/>
                     </connections>
                 </viewController>
+                <swipeGestureRecognizer direction="left" id="5t2-7b-VYV" userLabel="centerFromLeft">
+                    <connections>
+                        <action selector="centerFromLeft:" destination="fJZ-Pe-lQQ" id="YTh-8a-RQQ"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="guY-jt-n0m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZB6-7C-pQ6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2191.1999999999998" y="832.53373313343332"/>
         </scene>
@@ -89,10 +89,9 @@
         <!--Navigation Controller-->
         <scene sceneID="0xr-el-j7t">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7VK-ee-hYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="doX-Ux-jDq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LAq-UE-qQe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LAq-UE-qQe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -101,6 +100,7 @@
                         <segue destination="fJZ-Pe-lQQ" kind="relationship" relationship="rootViewController" id="avl-xp-jQI"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7VK-ee-hYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1252" y="832.53373313343332"/>
         </scene>

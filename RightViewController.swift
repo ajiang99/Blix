@@ -63,6 +63,10 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
         arr.append(drinkDict[indexPath.item]!)
         performSegue(withIdentifier: "rightViewToResults", sender: self)
     }
+    //Change cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 20), height: CGFloat(100))
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rightViewToResults" {

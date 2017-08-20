@@ -15,6 +15,7 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     var enteredIngredients: [String] = []
 
+    @IBOutlet weak var enteredTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,23 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
+        //enteredTable.beginUpdates()
+
         enteredIngredients.append(entryField.text!)
         entryField.text! = ""
         entryField.resignFirstResponder()
         print(enteredIngredients)
+        /*
+        for i in 0 ..< enteredIngredients.count {
+            //enteredTable.reloadRows(at: [IndexPath(row: i, section: section)], with: .automatic)
+            enteredTable.reloadRows(at: [IndexPath], with: .left)
+        }
+
+        enteredTable.endUpdates()
+        */
+        enteredTable.reloadData()
+        
+    
         return true
     }
     
@@ -77,6 +91,7 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print (enteredIngredients.count)
         return enteredIngredients.count
     }
     
@@ -88,4 +103,5 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         return cell
     }
+    
 }

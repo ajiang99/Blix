@@ -19,7 +19,10 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
             expanded: false),
         FilterSection(filter: "Ingredient",
                       attributes: ["Enter Ingredient"],
-            expanded: false)
+            expanded: false),
+        FilterSection(filter: "Calories",
+        attributes: ["Enter Ingredient"],
+        expanded: false)
     ]
     
     let typeDict : [Int:String] = [0:"shot",1:"cocktail",2:"beer",3:"cocoa",4:"coffee",5:"liqueur", 6:"ordinary",7:"shake",8:"other",9:"party", 10:"soft", 11: "all"]

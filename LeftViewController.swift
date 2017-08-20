@@ -34,7 +34,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isSearching{
             return filteredData.count
         }
-        return arrDrinks.count
+        return arrDrinks.count - 9000
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,6 +71,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print (DatabaseParse.getIngredientsFromObj(drink: arrDrinks[indexPath.row]))
         performSegue(withIdentifier: "toRecipeFromLeft", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }
