@@ -14,6 +14,37 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Intermediary View-->
+        <scene sceneID="FXj-0d-mZu">
+            <objects>
+                <viewController id="kaz-0k-pVU" customClass="IntermediaryView" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VeZ-VV-nwK"/>
+                        <viewControllerLayoutGuide type="bottom" id="k1b-nl-3HH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oqJ-pv-N5Q">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-bb-iBg" customClass="In">
+                                <rect key="frame" x="67" y="71" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="ingredientsDetected" destination="8qs-bb-iBg" id="pac-r9-scI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dh9-bt-x1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="-875"/>
+        </scene>
         <!--Manual Entry-->
         <scene sceneID="nT3-L7-pnI">
             <objects>
@@ -61,17 +92,34 @@
                                     <outlet property="delegate" destination="8tK-pW-Wss" id="fxb-2q-hVC"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSd-7B-QiR">
+                                <rect key="frame" x="158" y="617" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="finishedButton:" destination="8tK-pW-Wss" eventType="touchUpInside" id="Dt7-cs-h17"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="enteredTable" destination="JKK-mY-0SX" id="6Hq-Kb-tft"/>
                         <outlet property="entryField" destination="67B-R2-99I" id="J2J-4O-Hf8"/>
+                        <segue destination="CNQ-II-CQh" kind="show" identifier="manualToResults" id="ykk-Pt-Bcg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bu-xC-fTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="-871.21439280359823"/>
+            <point key="canvasLocation" x="2006" y="-1046"/>
+        </scene>
+        <!--ResultsNav-->
+        <scene sceneID="yTS-Mp-qFB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Results" referencedIdentifier="ResultsNav" id="CNQ-II-CQh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Isx-zv-enD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2570" y="-768"/>
         </scene>
         <!--Center View Controller-->
         <scene sceneID="jdy-lD-3fO">
@@ -145,6 +193,7 @@
                         <segue destination="x1Z-4V-IXu" kind="custom" identifier="leftSwipe" customClass="Segue1" customModule="Blix" customModuleProvider="target" id="Ys2-cm-SE8"/>
                         <segue destination="koT-mR-5x0" kind="show" identifier="centerToResults" id="JMv-7f-jm0"/>
                         <segue destination="8tK-pW-Wss" kind="show" identifier="toManualEntry" id="oPr-VE-U23"/>
+                        <segue destination="kaz-0k-pVU" kind="show" identifier="centerToInter" id="dax-ry-t7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWJ-f0-lu2" userLabel="First Responder" sceneMemberID="firstResponder"/>

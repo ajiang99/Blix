@@ -14,7 +14,14 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var entryField: SearchTextField!
     
     var enteredIngredients: [String] = []
+    let drinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
 
+    @IBAction func finishedButton(_ sender: Any) {
+        performSegue(withIdentifier: "manualToResults", sender: self)
+        //let drinksToReturn = DatabaseParse.filterByIngredient(drinks, enteredIngredients)
+    }
+    
+    
     @IBOutlet weak var enteredTable: UITableView!
 
     override func viewDidLoad() {
@@ -22,8 +29,6 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
 
         configureSimpleSearchTextField()
         entryField.delegate = self
-        
-
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -102,6 +107,28 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
         cell.textLabel?.text = ingredient
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "manualToResults"{
+            
+            /*
+            let recipeController = segue.destination as! RecipeViewController
+            recipeController.segueID = "results"
+            let recipeViewController = segue.destination as! RecipeViewController
+            recipeViewController.drink = sections[indexPath.section].drinkObjs[indexPath.row]
+            */
+            
+            
+            let arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
+            //let nav = segue.destination as! UINavigationController
+            //let resultsController = nav.viewControllers[0] as! ResultsController
+            let resultsController = segue.destination as! ResultsController
+            resultsController.filterTypeKey = arr //"ALL" keyword filter?
+            resultsController.segueID = "center"
+            //resultsController.selfSegueID = "center"
+            print("arr equals: \(resultsController.filterTypeKey)")
+        }
     }
     
 }

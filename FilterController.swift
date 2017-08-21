@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import SearchTextField
 
 class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate{
     
+    //@IBOutlet weak var entryField: SearchTextField!
+    //@IBOutlet weak var entryField: SearchTextField!
     var sections = [
         FilterSection(filter:"Type",
                       attributes: ["Shot","Cocktail","Beer","Cocoa","Coffee / Tea","Homemade Liqueur","Ordinary Drink","Milk / Float / Shake","Other/Unknown","Punch / Party Drink","Soft Drinks and Soda"],
@@ -56,7 +59,9 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if filterTypeKey.contains("all") != true{
             sections.remove(at: 0)
         }
-
+        
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -81,7 +86,15 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (sections[indexPath.section].expanded){
+        let chosenSection = sections[indexPath.section].filter
+        if chosenSection == "Ingredient"{
+            if (sections[indexPath.section].expanded){
+                return 80
+            } else{
+                return 0
+            }
+        }
+        else if (sections[indexPath.section].expanded){
             return 44
         } else{
             return 0
@@ -100,10 +113,27 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let chosenSection = sections[indexPath.section].filter
+        
+        if chosenSection == "Ingredient"{
+            //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "searchCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell")!
+
+            return cell
+
+        }
+            
+        if chosenSection == "Calories"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "calorieCell")!
+            
+            return cell
+        }
+        else{
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].attributes[indexPath.row]
         cell.imageView?.image = UIImage(named:"btn_heart_black_outline")
         return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -113,48 +143,51 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let chosenSection = sections[indexPath.section].filter
         let selectedFilter = sections[indexPath.section].attributes[indexPath.row]
         
-        if cell?.imageView?.image == UIImage(named: "btn_heart_black_outline"){
-            cell?.imageView?.image = UIImage(named: "btn_heart_red_solid")
-        }
-        
-        else{
-            cell?.imageView?.image = UIImage(named: "btn_heart_black_outline")
-        }
-        
-        if cell?.imageView?.image == UIImage(named: "btn_heart_red_solid"){
-            if chosenSection == "Type"{
-                let addType : String = typeDict[indexPath.row]!
-                adjustedFilterTypeKey.append(addType)
+        if chosenSection != "Ingredient" && chosenSection != "Calories"{
+            
+            if cell?.imageView?.image == UIImage(named: "btn_heart_black_outline"){
+                cell?.imageView?.image = UIImage(named: "btn_heart_red_solid")
             }
-            if chosenSection == "Alcoholic"{
-                if selectedFilter == "True"{
-                    alcoholic = "Alcoholic"
-                }
-                else{
-                    alcoholic = "Optional"
-                }
                 
-                //FIX THE TRUE AND FALSE LOGIC
+            else{
+                cell?.imageView?.image = UIImage(named: "btn_heart_black_outline")
             }
-        }
-        
-        if cell?.imageView?.image == UIImage(named: "btn_heart_black_outline"){
-            if chosenSection == "Type"{
-                let removeType : String = typeDict[indexPath.row]!
-                let indexToRemove = adjustedFilterTypeKey.index(of:removeType)
-                adjustedFilterTypeKey.remove(at: indexToRemove!)
-                print(adjustedFilterTypeKey)
-            }
-            if chosenSection == "Alcoholic"{
-                if selectedFilter == "True"{
-                    alcoholic = "Alcoholic"
+            
+            if cell?.imageView?.image == UIImage(named: "btn_heart_red_solid"){
+                if chosenSection == "Type"{
+                    let addType : String = typeDict[indexPath.row]!
+                    adjustedFilterTypeKey.append(addType)
                 }
-                else{
-                    alcoholic = "Optional"
+                if chosenSection == "Alcoholic"{
+                    if selectedFilter == "True"{
+                        alcoholic = "Alcoholic"
+                    }
+                    else{
+                        alcoholic = "Optional"
+                    }
+                    
+                    //FIX THE TRUE AND FALSE LOGIC
                 }
             }
+            
+            if cell?.imageView?.image == UIImage(named: "btn_heart_black_outline"){
+                if chosenSection == "Type"{
+                    let removeType : String = typeDict[indexPath.row]!
+                    let indexToRemove = adjustedFilterTypeKey.index(of:removeType)
+                    adjustedFilterTypeKey.remove(at: indexToRemove!)
+                    print(adjustedFilterTypeKey)
+                }
+                if chosenSection == "Alcoholic"{
+                    if selectedFilter == "True"{
+                        alcoholic = "Alcoholic"
+                    }
+                    else{
+                        alcoholic = "Optional"
+                    }
+                }
+            }
+            print(adjustedFilterTypeKey)
         }
-        print(adjustedFilterTypeKey)
     }
  
     

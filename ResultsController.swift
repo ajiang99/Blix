@@ -12,8 +12,9 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var segueID = ""
     
+    var cellCount = 0
     @IBOutlet var tableView: UITableView!
-
+    
     @IBAction func filterButton(_ sender: Any) {
         performSegue(withIdentifier: "resultsToFilter", sender: self)
     }
@@ -22,7 +23,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         if segueID == "center"{
             performSegue(withIdentifier: "unwindToCenter", sender: self)
         }
-        
+            
         else{
             performSegue(withIdentifier: "unwindToRight", sender: self)
         }
@@ -31,11 +32,12 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     @IBAction func unwindToResults(segue:UIStoryboardSegue) { }
-
-
+    
+    
     var filterTypeKey: [String]!
     
     var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    var reducedArrDrinks: [Drink] = []
     
     var typeDict: [String:[Drink]] = ["shot":[],"cocktail":[],"beer":[],"cocoa":[],"coffee":[],"liqueur":[],"ordinary":[],"shake":[],"other":[],"party":[],"soft":[]]
     
@@ -43,6 +45,14 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //ALL DID HERE WAS REDUCED NUMBER OF DRINKS
+        var count = 0
+        for drink in arrDrinks{
+            if count<100{
+                reducedArrDrinks.append(drink)
+            }
+            count+=1
+        }
         self.organizeDrinks()
         self.createSections()
         
@@ -51,7 +61,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidAppear(_ animated: Bool) {
         //self.navigationController?.isNavigationBarHidden = false
-
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +70,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     //
     func organizeDrinks(){
-        for drink in arrDrinks{
+        for drink in reducedArrDrinks{
             print (drink.type)
             print(typeDict["cocktail"]?.count)
             switch drink.type{
@@ -103,7 +113,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
                     drinkObjArr.append(drink)
                 }
                 let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
-    
+                
                 sections.append(drinkSection)
             }
         }
@@ -136,6 +146,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         return sections[section].drinks.count
     }
     
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 44
     }
@@ -159,12 +170,15 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].drinks[indexPath.row]
         
-        
         return cell
+
+        
     }
+    
     
     func toggleSection(header: ExpandableHeaderView, section: Int) {
         sections[section].expanded = !sections[section].expanded

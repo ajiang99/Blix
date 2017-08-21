@@ -296,4 +296,19 @@ class DatabaseParse{
     }
     */
     
+    static func filterByIngredient(_ drinks: [Drink], _ ingredients: [String]) -> [Drink]{
+        var filteredArr: [Drink] = []
+        let ingredientsSet = Set(ingredients)
+        for drink in drinks{
+            let drinkIngredients = getIngredientsFromObj(drink: drink)
+            //figure out this set and array converting
+            // is drinkIngredients in ingredientsSet
+            if ingredientsSet.isSuperset(of: drinkIngredients){
+                filteredArr.append(drink)
+            }
+        }
+        return filteredArr
+    }
+    
+    
 }
