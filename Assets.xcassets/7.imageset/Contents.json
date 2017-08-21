@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "7.jpg",
+      "filename" : "Punches Button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Punches Button@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Punches Button@3x.png",
       "scale" : "3x"
     }
   ],

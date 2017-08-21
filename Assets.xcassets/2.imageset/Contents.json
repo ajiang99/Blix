@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "2.jpg",
+      "filename" : "Ale Button.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Ale Button-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Ale Button-2.png",
       "scale" : "3x"
     }
   ],

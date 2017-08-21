@@ -118,12 +118,12 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
             let recipeViewController = segue.destination as! RecipeViewController
             recipeViewController.drink = sections[indexPath.section].drinkObjs[indexPath.row]
             */
-            
+            //SOMETHING FUNKY HERE
             
             let arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
-            //let nav = segue.destination as! UINavigationController
-            //let resultsController = nav.viewControllers[0] as! ResultsController
-            let resultsController = segue.destination as! ResultsController
+            let nav = segue.destination as! UINavigationController
+            let resultsController = nav.viewControllers[0] as! ResultsController
+            //let resultsController = segue.destination as! ResultsController
             resultsController.filterTypeKey = arr //"ALL" keyword filter?
             resultsController.segueID = "center"
             //resultsController.selfSegueID = "center"

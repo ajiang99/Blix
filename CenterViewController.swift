@@ -101,7 +101,7 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         return super.segueForUnwinding(to: toViewController,from: fromViewController, identifier: identifier)!
     }
-    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "centerToResults"{ //actuallyCenterToFilter 
             //let thisController = UIViewController() as! ResultsController
@@ -115,6 +115,22 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
             print("arr equals: \(resultsController.filterTypeKey)")
         }
     }
+    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "centerToInter"{ //actuallyCenterToFilter
+            //let thisController = UIViewController() as! ResultsController
+            //thisController.segueID = "center"
+            arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
+            let interController = segue.destination as! IntermediaryView
+            interController.filterTypeKey = arr
+            interController.segueID = "center"
+            interController.selfSegueID = "center"
+            interController.resultSet = resultSet
+            //print("arr equals: \(resultsController.filterTypeKey)")
+        }
+    }
+    
 }
 
 
@@ -157,7 +173,7 @@ extension CenterViewController {
                 print(self.elementsToReturn)
                 print(self.count)
                 self.labelResults.text! = self.result
-                self.performSegue(withIdentifier: "centerToResults", sender: self)
+                self.performSegue(withIdentifier: "centerToInter", sender: self)
             }
         })
         
