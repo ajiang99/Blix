@@ -35,7 +35,7 @@
                                         <rect key="frame" x="0.0" y="28" width="251" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0oK-C0-v6J" id="WsW-ZC-Msv">
-                                            <rect key="frame" x="0.0" y="0.0" width="251" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="251" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -54,7 +54,7 @@
                                         <rect key="frame" x="0.0" y="28" width="291" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KZ4-nr-Yct" id="dCq-Ft-XzY">
-                                            <rect key="frame" x="0.0" y="0.0" width="291" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="291" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -71,6 +71,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fBR-zf-fXD">
+                                <rect key="frame" x="161" y="617" width="37" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButton:" destination="kaz-0k-pVU" eventType="touchUpInside" id="ie4-mY-9us"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -78,11 +86,12 @@
                         <outlet property="addIngredientsTable" destination="xCz-QF-x2m" id="Rxo-1P-QAh"/>
                         <outlet property="detectedIngredientsTable" destination="Zch-mk-mdH" id="2ey-nX-XgE"/>
                         <outlet property="entryField" destination="GOA-ew-R2G" id="znw-Ww-O95"/>
+                        <segue destination="CNQ-II-CQh" kind="show" identifier="interToResults" id="u54-sJ-nwN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dh9-bt-x1J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.79999999999995" y="-875.71214392803608"/>
+            <point key="canvasLocation" x="1271" y="-976"/>
         </scene>
         <!--Manual Entry-->
         <scene sceneID="nT3-L7-pnI">
@@ -313,4 +322,7 @@
         <image name="Search Button" width="129" height="91"/>
         <image name="Upload Button" width="178" height="267"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="u54-sJ-nwN"/>
+    </inferredMetricsTieBreakers>
 </document>

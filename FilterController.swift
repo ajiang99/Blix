@@ -28,7 +28,9 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         expanded: false)
     ]
     
-    let typeDict : [Int:String] = [0:"shot",1:"cocktail",2:"beer",3:"cocoa",4:"coffee",5:"liqueur", 6:"ordinary",7:"shake",8:"other",9:"party", 10:"soft", 11: "all"]
+    //let typeDict : [Int:String] = [0:"shot",1:"cocktail",2:"beer",3:"cocoa",4:"coffee",5:"liqueur", 6:"ordinary",7:"shake",8:"other",9:"party", 10:"soft", 11: "all"]
+    
+    let typeDict : [Int:String] = [0:"cocktail",1:"beer",2:"shot",3:"liqueur",4:"coffee",5:"dry", 6:"party",7:"other",8:"all"]
     
     var filterTypeKey: [String]!
     
@@ -37,6 +39,8 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     var alcoholic: String = "" //defualt
     
     var addedIngredientsArr:[String]!
+    
+    var recievedIngredients:[String]!
     
     var segueID = ""
     
@@ -209,6 +213,7 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let resultsController = nav.viewControllers[0] as! ResultsController
             resultsController.segueID = self.segueID
             resultsController.filterTypeKey = arrToPass
+            resultsController.recievedIngredients = recievedIngredients
             //print("arr equals: \(resultsController.filterTypeKey)")
             
         }

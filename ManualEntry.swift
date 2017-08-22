@@ -83,14 +83,18 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func configureSimpleSearchTextField() {
-        
+        /*
         let arrDrinks = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
         
         var drinkNameArr: [String] = []
         for drink in arrDrinks{
             drinkNameArr.append(drink.name)
         }
+ 
         entryField.filterStrings(drinkNameArr)
+        */
+        let arrIngredients = GlobalVariables.arrIngredients
+        entryField.filterStrings(arrIngredients!)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -122,12 +126,17 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
             */
             //SOMETHING FUNKY HERE
             
-            let arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
+            //[0:"cocktail",1:"beer",2:"shot",3:"liqueur",4:"coffee",5:"dry", 6:"party",7:"other",8:"all"]
+            
+            let arr = ["cocktail","beer","shot","liqueur","coffee","dry","party","other","all"]
+            //let arr = ["all"]
             let nav = segue.destination as! UINavigationController
             let resultsController = nav.viewControllers[0] as! ResultsController
             //let resultsController = segue.destination as! ResultsController
             resultsController.filterTypeKey = arr //"ALL" keyword filter?
             resultsController.segueID = "center"
+            resultsController.recievedIngredients = enteredIngredients
+
             //resultsController.selfSegueID = "center"
             print("arr equals: \(resultsController.filterTypeKey)")
         }

@@ -248,7 +248,10 @@ class DatabaseParse{
             let drinkIngredients = getIngredientsFromObj(drink: drink)
             //figure out this set and array converting
             // is drinkIngredients in ingredientsSet
-            if ingredientsSet.isSuperset(of: drinkIngredients){
+            print(drinkIngredients)
+            print(drink)
+            print(ingredientsSet)
+            if ingredientsSet.isSubset(of: drinkIngredients){
                 filteredArr.append(drink)
             }
         }

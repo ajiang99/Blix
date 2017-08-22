@@ -37,7 +37,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         if isSearching{
             return filteredData.count
         }
-        return arrDrinks.count - 9000
+        //CHANGE HOW MANY PRESENTED
+        return arrDrinks.count - 8900
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

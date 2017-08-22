@@ -17,12 +17,16 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
     var resultSet = Set<String>()
     var arrResultSet: [String]?
     var enteredIngredients: [String] = []
-    var passedArrDrinks: [String]? 
+    var ingredients: [String] = []
     
     @IBOutlet weak var entryField: SearchTextField!
     @IBOutlet weak var detectedIngredientsTable: UITableView!
     @IBOutlet weak var addIngredientsTable: UITableView!
     
+    @IBAction func doneButton(_ sender: Any) {
+        ingredients = enteredIngredients + arrResultSet!
+        performSegue(withIdentifier: "interToResults", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         arrResultSet = (Array)(resultSet) //Set to Array weird config
@@ -35,15 +39,16 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "centerToResults"{ //actuallyCenterToFilter
+        if segue.identifier == "interToResults"{ //actuallyCenterToFilter
             //let thisController = UIViewController() as! ResultsController
             //thisController.segueID = "center"
-            self.filterTypeKey = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
+            let arr = ["cocktail","beer","shot","liqueur","coffee","dry","party","other","all"]
             let nav = segue.destination as! UINavigationController
-            let resultsController = nav.viewControllers[0] as! FilterController
+            let resultsController = nav.viewControllers[0] as! ResultsController
             resultsController.filterTypeKey = self.filterTypeKey
             resultsController.segueID = "center"
-            resultsController.selfSegueID = "center"
+            resultsController.recievedIngredients = ingredients
+            resultsController.filterTypeKey = arr
             print("arr equals: \(resultsController.filterTypeKey)")
         }
     }
@@ -92,13 +97,15 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
     
     func configureSimpleSearchTextField() {
         //if let controller = CenterViewController.self
-        let arrDrinks = GlobalVariables.arrDrinks//DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
-        
+        //let arrDrinks = GlobalVariables.arrDrinks//DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        /*
         var drinkNameArr: [String] = []
         for drink in arrDrinks{
             drinkNameArr.append(drink.name)
         }
-        entryField.filterStrings(drinkNameArr)
+        */
+        let arrIngredients = GlobalVariables.arrIngredients
+        entryField.filterStrings(arrIngredients!)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -131,7 +138,7 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
         }
         if tableView == detectedIngredientsTable{
             cell = tableView.dequeueReusableCell(withIdentifier: "detectedCell", for: indexPath)
-            cell?.textLabel?.text = "tst"
+            cell?.textLabel?.text = arrResultSet?[indexPath.row]
             //arrResultSet?[indexPath.row]
 
         }

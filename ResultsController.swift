@@ -11,11 +11,14 @@ import UIKit
 class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate {
     
     var segueID = ""
+    var sectionCount: Int = 0
     
     var cellCount = 0
+    var count = 0
+    
+    var recievedIngredients: [String]?
+    
     @IBOutlet var tableView: UITableView!
-    var passedArrDrinks: [String]?
-
     
     @IBAction func filterButton(_ sender: Any) {
         performSegue(withIdentifier: "resultsToFilter", sender: self)
@@ -38,8 +41,10 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var filterTypeKey: [String]!
     
-    var arrDrinks: [Drink] = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
-    var reducedArrDrinks: [Drink] = []
+    //var arrDrinks: [Drink] = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    //REDUCED ARR DRINKS SAME AS ARRDRINKS, JUST DIDN'T CHANGE NAME YET
+    
+    var reducedArrDrinks: [Drink] = GlobalVariables.arrDrinks
     
     //let drinkDict : [Int:String] = [0:"cocktail",1:"beer",2:"shot",3:"liqueur",4:"coffee",5:"dry", 6:"party",7:"other",8:"all"]
     
@@ -49,8 +54,13 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var sections = [Section]()
     
     override func viewDidLoad() {
+        print(recievedIngredients)
+        if let ingredients = recievedIngredients{
+            reducedArrDrinks = DatabaseParse.filterByIngredient(reducedArrDrinks, recievedIngredients!)
+        }
         super.viewDidLoad()
         //ALL DID HERE WAS REDUCED NUMBER OF DRINKS
+        /*
         var count = 0
         for drink in arrDrinks{
             if count<100{
@@ -58,6 +68,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             count+=1
         }
+        */
         self.organizeDrinks()
         self.createSections()
         
@@ -76,8 +87,8 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     //
     func organizeDrinks(){
         for drink in reducedArrDrinks{
-            print (drink.type)
-            print(typeDict["cocktail"]?.count)
+            //print (drink.type)
+            //print(typeDict["cocktail"]?.count)
             switch drink.type{
             case "Shots & Shooters":
                 typeDict["shot"]?.append(drink)
@@ -112,17 +123,32 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func createSections(){
         if filterTypeKey.contains("all") != true
         {
-            for type in filterTypeKey{
-                var drinkNameArr = [String]()
-                var drinkObjArr = [Drink()]
-                for drink in typeDict[type]!{
-                    drinkNameArr.append(drink.name)
-                    drinkObjArr.append(drink)
+            var count = 0
+            
+                for type in filterTypeKey{
+                    
+                    var drinkNameArr = [String]()
+                    var drinkObjArr = [Drink()]
+                        //for drink in typeDict[type]!{
+                        for index in 1...50{
+                            drinkNameArr.append((typeDict[type]?[index].name)!)
+                            //INDEX OUT OF RANGE FOR LIQUEUR
+                            drinkObjArr.append((typeDict[type]?[index])!)
+                    }
+                    
+                            
+
+                        //}
+                    
+                    //SHOWS ONLY FIRST 50
+                    //drinkObjArr.removeSubrange(ClosedRange(uncheckedBounds: (lower: 51, upper: drinkObjArr.endIndex - 1)))
+                    let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
+ 
+                    
+                    sections.append(drinkSection)
+                    count+=1
                 }
-                let drinkSection = Section(type: type, drinks: drinkNameArr, drinkObjs: typeDict[type]!, expanded: false)
-                
-                sections.append(drinkSection)
-            }
+            
         }
         else{
             let index = filterTypeKey.index(of: "all")
@@ -130,7 +156,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             for type in filterTypeKey{
                 var drinkNameArr = [String]()
                 var drinkObjArr = [Drink()]
-                print(filterTypeKey)
+                //print(filterTypeKey)
                 for drink in typeDict[type]!{
                     drinkNameArr.append(drink.name)
                     drinkObjArr.append(drink)
@@ -146,10 +172,12 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+
         return sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //sectionCount = sections[section].drinks.count
         return sections[section].drinks.count
     }
     
@@ -177,9 +205,19 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
-        cell.textLabel?.text = sections[indexPath.section].drinks[indexPath.row]
+        
+        var cell: UITableViewCell
+        //print(indexPath.row)
+        //print(sectionCount)
+        /*
+        if indexPath.row == (sectionCount - 1){
+            cell = tableView.dequeueReusableCell(withIdentifier: "loadMore")!
+        }
+        */
+        //else{
+            cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
+            cell.textLabel?.text = sections[indexPath.section].drinks[indexPath.row]
+        //}
         
         return cell
 
