@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "All Button.png",
+      "filename" : "Recipe Background.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "All Button@2x.png",
+      "filename" : "Recipe Background@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "All Button@3x.png",
+      "filename" : "Recipe Background@3x.png",
       "scale" : "3x"
     }
   ],

@@ -39,7 +39,10 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
     var reducedArrDrinks: [Drink] = []
     
-    var typeDict: [String:[Drink]] = ["shot":[],"cocktail":[],"beer":[],"cocoa":[],"coffee":[],"liqueur":[],"ordinary":[],"shake":[],"other":[],"party":[],"soft":[]]
+    //let drinkDict : [Int:String] = [0:"cocktail",1:"beer",2:"shot",3:"liqueur",4:"coffee",5:"dry", 6:"party",7:"other",8:"all"]
+    
+    var typeDict: [String:[Drink]] = ["cocktail":[],"beer":[],"shot":[],"liqueur":[],"coffee":[],"dry":[],"party":[],"other":[],"all":[]]
+    
     
     var sections = [Section]()
     
@@ -74,28 +77,30 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
             print (drink.type)
             print(typeDict["cocktail"]?.count)
             switch drink.type{
-            case "Shot":
+            case "Shots & Shooters":
                 typeDict["shot"]?.append(drink)
             case "Cocktails":
                 typeDict["cocktail"]?.append(drink)//cocktailArr.append(drink)
-            case "Beer":
+            case "Beer / Ale":
                 typeDict["beer"]?.append(drink)//beerArr.append(drink)
-            case "Cocoa":
-                typeDict["cocoa"]?.append(drink)//cocoaArr.append(drink)
+            //case "Cocoa":
+                //typeDict["cocoa"]?.append(drink)//cocoaArr.append(drink)
             case "Coffee / Tea":
                 typeDict["coffee"]?.append(drink)//coffeeTeaArr.append(drink)
-            case "Homemade Liqueur":
+            case "Liqueurs":
                 typeDict["liqueur"]?.append(drink)//homemadeLiqeuerArr.append(drink)
-            case "Ordinary Drink":
-                typeDict["ordinary"]?.append(drink)//ordinaryDrinkArr.append(drink)
-            case "Milk / Float / Shake":
-                typeDict["shake"]?.append(drink)//shakeArr.append(drink)
-            case "Other/Unknown":
+            //case "Ordinary Drink":
+                //typeDict["ordinary"]?.append(drink)//ordinaryDrinkArr.append(drink)
+            //case "Milk / Float / Shake":
+                //typeDict["shake"]?.append(drink)//shakeArr.append(drink)
+            case "Other Drinks":
                 typeDict["other"]?.append(drink)//otherArr.append(drink)
-            case "Punch / Party Drink":
+            case "Punches":
                 typeDict["party"]?.append(drink)//partyDrinkArr.append(drink)
-            case "Soft Drinks and Soda":
-                typeDict["soft"]?.append(drink)//softDrinkArr.append(drink)
+            //case "Soft Drinks and Soda":
+                //typeDict["soft"]?.append(drink)//softDrinkArr.append(drink)
+            case "Non-Alcoholic":
+                typeDict["dry"]?.append(drink)
             default:
                 break
             }

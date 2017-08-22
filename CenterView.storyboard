@@ -218,6 +218,16 @@
                                 <color key="textColor" red="1" green="0.92941176470588238" blue="0.87450980392156863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq3-ee-hsu" userLabel="Browse Button">
+                                <rect key="frame" x="222" y="569" width="129" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Browse Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utS-xC-7HM" userLabel="Search Button">
+                                <rect key="frame" x="16" y="568" width="129" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Search Button"/>
+                            </button>
                         </subviews>
                         <gestureRecognizers/>
                         <connections>
@@ -275,9 +285,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Browse Button" width="129" height="91"/>
         <image name="CenterViewBackground" width="377" height="669"/>
         <image name="ManualButton" width="305" height="181"/>
         <image name="PhotoButton" width="183" height="263"/>
+        <image name="Search Button" width="129" height="91"/>
         <image name="Upload Button" width="178" height="267"/>
     </resources>
 </document>

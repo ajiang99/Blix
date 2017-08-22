@@ -13,8 +13,6 @@ class RecipeViewController: UIViewController {
     @IBOutlet var nameLabel: UILabel!
     
     @IBOutlet var typeLabel: UILabel!
-    
-    @IBOutlet var alcoholicPropertyLabel: UILabel!
 
     @IBOutlet var instructionsText: UITextView!
     
@@ -22,7 +20,10 @@ class RecipeViewController: UIViewController {
     
     @IBOutlet var ingredientsText: UITextView!
     
+    @IBOutlet weak var descriptionView: UITextView!
     var segueID = ""
+    
+    @IBOutlet weak var glassType: UILabel!
     
     @IBAction func backButton(_ sender: Any) {
         print(segueID)
@@ -44,10 +45,11 @@ class RecipeViewController: UIViewController {
         print(newDrink.name)
         print(newDrink.type)
         nameLabel.text = newDrink.name
+        descriptionView.text = newDrink.content
         typeLabel.text = newDrink.type
-        alcoholicPropertyLabel.text = newDrink.alcoholicProperty
+        glassType.text = newDrink.glassType
         instructionsText.text = newDrink.instructions
-        glassLabel.text = newDrink.glassType
+        //glassLabel.text = newDrink.glassType
         ingredientsText.text = newDrink.ingredients
     }
     
