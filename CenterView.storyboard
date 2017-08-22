@@ -160,6 +160,27 @@
             </objects>
             <point key="canvasLocation" x="2570" y="-768"/>
         </scene>
+        <!--Splash Screen-->
+        <scene sceneID="X6q-H7-isf">
+            <objects>
+                <viewController storyboardIdentifier="SplashScreen" title="Splash Screen" id="MO8-Vh-5Ya" customClass="SplashScreen" customModule="Blix" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tGG-Ix-eD6"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZAP-OA-MNc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0pG-pT-oX1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="LeU-S4-Xt9" kind="show" identifier="splashToStart" id="tRl-Dn-BsV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YeN-Dm-Pz4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="-177"/>
+        </scene>
         <!--Center View Controller-->
         <scene sceneID="jdy-lD-3fO">
             <objects>

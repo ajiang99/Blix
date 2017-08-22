@@ -42,8 +42,7 @@ class RecipeViewController: UIViewController {
         guard let newDrink = currentDrink else{
             return
         }
-        print(newDrink.name)
-        print(newDrink.type)
+     
         nameLabel.text = newDrink.name
         descriptionView.text = newDrink.content
         typeLabel.text = newDrink.type
@@ -51,6 +50,7 @@ class RecipeViewController: UIViewController {
         instructionsText.text = newDrink.instructions
         //glassLabel.text = newDrink.glassType
         ingredientsText.text = newDrink.ingredients
+        
     }
     
     

@@ -14,7 +14,9 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     @IBOutlet weak var entryField: SearchTextField!
     
     var enteredIngredients: [String] = []
-    let drinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    let drinks = GlobalVariables.arrDrinks//DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    var passedArrDrinks: [String]?
+
 
     @IBAction func finishedButton(_ sender: Any) {
         performSegue(withIdentifier: "manualToResults", sender: self)
@@ -82,7 +84,7 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     func configureSimpleSearchTextField() {
         
-        let arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        let arrDrinks = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
         
         var drinkNameArr: [String] = []
         for drink in arrDrinks{

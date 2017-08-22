@@ -17,6 +17,7 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
     var resultSet = Set<String>()
     var arrResultSet: [String]?
     var enteredIngredients: [String] = []
+    var passedArrDrinks: [String]? 
     
     @IBOutlet weak var entryField: SearchTextField!
     @IBOutlet weak var detectedIngredientsTable: UITableView!
@@ -90,8 +91,8 @@ class IntermediaryView: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func configureSimpleSearchTextField() {
-        
-        let arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        //if let controller = CenterViewController.self
+        let arrDrinks = GlobalVariables.arrDrinks//DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
         
         var drinkNameArr: [String] = []
         for drink in arrDrinks{

@@ -24,6 +24,11 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     var count = 0
     var arr : [String] = []
     
+    //Data to Instantiate Beforehand
+    var arrDrinks: [Drink]?
+    var arrIngredients: [String]?
+    
+    
     //LABELS AND BUTTONS    
     @IBAction func unwindToCenter(segue: UIStoryboardSegue) {}
     
@@ -70,18 +75,31 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     //VIEW LOADS
     override func viewDidLoad() {
+ 
+
         super.viewDidLoad()
+        //instantiateDrinks()
+        //super.viewDidLoad()
+        let instantiateDrinks = GlobalVariables.arrDrinks
+        let instantiateIngredients = GlobalVariables.arrIngredients
+        print("Andrew")
+        //performSegue(withIdentifier: "splashToStart", sender: self)
         imagePicker.delegate = self
-        let totArr = DatabaseParse.getSwiftArrayFromPlist(name: "Drinks")
-        //print(getDataCrude(array: totArr, data: "24 karat nightmare"))
-        print(DatabaseParse.getIngredients(array: totArr))
-        //print(DatabaseParse.readJson())
-        
+        //let totArr = DatabaseParse.getSwiftArrayFromPlist(name: "Drinks")
+                
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    //DATA CREATION
+    
+    func instantiateDrinks(){
+        arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        arrIngredients = DatabaseParse.getDifferentIngredients(drinks: arrDrinks!)
+        
+    }
+    
     //SEGUE CONTROL
     override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
         if let id = identifier{
@@ -101,21 +119,7 @@ class CenterViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         return super.segueForUnwinding(to: toViewController,from: fromViewController, identifier: identifier)!
     }
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "centerToResults"{ //actuallyCenterToFilter 
-            //let thisController = UIViewController() as! ResultsController
-            //thisController.segueID = "center"
-            arr = ["cocktail","shot","beer","coffee","party","liqueur","ordinary","cocoa","shake","soft", "other"]
-            let nav = segue.destination as! UINavigationController
-            let resultsController = nav.viewControllers[0] as! FilterController
-            resultsController.filterTypeKey = arr
-            resultsController.segueID = "center"
-            resultsController.selfSegueID = "center"
-            print("arr equals: \(resultsController.filterTypeKey)")
-        }
-    }
-    */
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "centerToInter"{ //actuallyCenterToFilter

@@ -12,6 +12,7 @@ import SearchTextField
 class SearchCell: UITableViewCell, UITextFieldDelegate{
     @IBOutlet weak var entryField: SearchTextField!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configureSimpleSearchTextField()
@@ -66,7 +67,7 @@ class SearchCell: UITableViewCell, UITextFieldDelegate{
     
     func configureSimpleSearchTextField() {
         
-        let arrDrinks = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        let arrDrinks = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
         
         var drinkNameArr: [String] = []
         for drink in arrDrinks{

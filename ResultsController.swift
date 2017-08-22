@@ -14,6 +14,8 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var cellCount = 0
     @IBOutlet var tableView: UITableView!
+    var passedArrDrinks: [String]?
+
     
     @IBAction func filterButton(_ sender: Any) {
         performSegue(withIdentifier: "resultsToFilter", sender: self)
@@ -36,7 +38,7 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     var filterTypeKey: [String]!
     
-    var arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    var arrDrinks: [Drink] = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
     var reducedArrDrinks: [Drink] = []
     
     //let drinkDict : [Int:String] = [0:"cocktail",1:"beer",2:"shot",3:"liqueur",4:"coffee",5:"dry", 6:"party",7:"other",8:"all"]

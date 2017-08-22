@@ -25,9 +25,12 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var filteredData:[String] = []
         
-    let arrDrinks: [Drink] = DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+    let arrDrinks: [Drink] = GlobalVariables.arrDrinks // DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
     
     var nameArr: [String] = []
+    
+    var passedArrDrinks: [String]?
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -71,7 +74,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print (DatabaseParse.getIngredientsFromObj(drink: arrDrinks[indexPath.row]))
+        //print (DatabaseParse.getIngredientsFromObj(drink: arrDrinks[indexPath.row]))
         performSegue(withIdentifier: "toRecipeFromLeft", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

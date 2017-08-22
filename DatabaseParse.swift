@@ -133,7 +133,8 @@ class DatabaseParse{
         
         let newStr = drink.content.substring(with: range)
         
-        let ingredientsArr = newStr.components(separatedBy: ", ")
+        var ingredientsArr = newStr.components(separatedBy: ", ")
+        
         
         var reformattedIngredientsArr: [String] = []
         
@@ -144,6 +145,8 @@ class DatabaseParse{
             let last = reformattedIngredientsArr[reformattedIngredientsArr.endIndex - 1]
             
             let lastTwoIngredients = last.components(separatedBy: " and ")
+            
+            reformattedIngredientsArr.removeLast()
             
             reformattedIngredientsArr += reformattedIngredientsArr + lastTwoIngredients
             
@@ -161,36 +164,7 @@ class DatabaseParse{
         
         //"A delicious recipe for 57 Chevy, with vodka, Southern Comfort peach liqueur, Grand Marnier orange liqueur and pineapple juice. Also lists similar drink recipes."
     }
-    /*
-    static func getDataFromName(array: Array<Dictionary<String,String>>, info: String) -> [Drink]{
-        var arrDrinks: [Drink] = []
-        for info in array{
-            if info["d_name"] == info["d_name"]{//data{
-                let id = info["id"]
-                let name = info["d_name"]
-                let cat = info["d_cat"]
-                let alcoholicProperty = info["d_alcohol"]
-                let glassType = info["d_glass"]
-                let ingredients = info["d_ingredients"]
-                let instructions = info["d_instructions"]
-                let shopping = info["d_shopping"]
-                            
-                let drink = Drink(id!, name!, cat!, alcoholicProperty!, glassType!, ingredients!, instructions!, shopping!)
-                
-                arrDrinks.append(drink)
-                
-            }
-            //grab name let x = name
-            //grab stuff let y = stuff
-            //grab flavor let z = flavor
-            //let drink = Drink(name: x, stuff: y, flavor, z)
-            //let arrDrinks: [Drink] = []
-            //arrDrinks.append(drink)
-            //getDataFromName(array: Array<Dictionary<String,String>>, data: String) -> [Drink]) {
-        }
-        return arrDrinks
-    }
-    */
+   
 
     static func getIngredients(array: Array<Dictionary<String,String>>) -> (Set<String>) {
         var setDrinks = Set<String>()
@@ -201,15 +175,6 @@ class DatabaseParse{
         }
         return setDrinks
     }
-    /*
-    static func getIngredientsFromObj(drink: Drink) -> (Set<String>){
-        var setDrinks = Set<String>()
-        let str = drink.shopping
-        let arrDrinks = (str.components(separatedBy: "|"))
-        setDrinks = Set(arrDrinks)
-        return setDrinks
-    }
-    */
     
     //Takes drink array to be filtered and the names needed to be filtered out
     static func filterNames(drinks: [Drink], names: [String]) -> [Drink]{
@@ -224,17 +189,7 @@ class DatabaseParse{
         return filteredArr
     }
     
-    //Takes drinkArr and type, returns filtreredArr
-    /*static func filterName(drinks: [Drink], type: String) -> [Drink]{
-        var filteredArr: [Drink] = []
-        for drink in drinks{
-            if drink.type == type{
-                filteredArr.append(drink)
-            }
-        }
-        return filteredArr
-    }
- */
+
     
     static func filterTypes(drinks: [Drink], types: [String]) -> [Drink]{
         var filteredArr: [Drink] = []
@@ -284,18 +239,8 @@ class DatabaseParse{
         }
         return filteredArr
     }
-    /*
-    static func filterAlcoholicProperty(drinks: [Drink], id: String) -> [Drink]{
-        var filteredArr: [Drink] = []
-        for drink in drinks{
-            if drink.id == id{
-                filteredArr.append(drink)
-            }
-        }
-        return filteredArr
-    }
-    */
-    
+
+    //Give Ingredient and filters out with drink has that ingredient
     static func filterByIngredient(_ drinks: [Drink], _ ingredients: [String]) -> [Drink]{
         var filteredArr: [Drink] = []
         let ingredientsSet = Set(ingredients)
@@ -308,6 +253,19 @@ class DatabaseParse{
             }
         }
         return filteredArr
+    }
+    
+    static func getDifferentIngredients(drinks: [Drink]) -> [String]{
+        var ingredientsArr: [String] = []
+        for drink in drinks{
+            let arrTheseIngredients = getIngredientsFromObj(drink: drink)
+            for ingredient in arrTheseIngredients{
+                if ingredientsArr.contains(ingredient) != true{
+                    ingredientsArr.append(ingredient)
+                }
+            }
+        }
+        return ingredientsArr
     }
     
     
