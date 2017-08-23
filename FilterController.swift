@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import SearchTextField
+//import SearchTextField
 
 class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSource, ExpandableHeaderViewDelegate{
     
     //@IBOutlet weak var entryField: SearchTextField!
     //@IBOutlet weak var entryField: SearchTextField!
+    
+    
     var sections = [
         FilterSection(filter:"Type",
                       attributes: ["Shot","Cocktail","Beer","Cocoa","Coffee / Tea","Homemade Liqueur","Ordinary Drink","Milk / Float / Shake","Other/Unknown","Punch / Party Drink","Soft Drinks and Soda"],
@@ -20,7 +22,7 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         FilterSection(filter:"Alcoholic",
                       attributes: ["True", "False"],
             expanded: false),
-        FilterSection(filter: "Ingredient",
+        FilterSection(filter: "Add Ingredients",
                       attributes: ["Enter Ingredient"],
             expanded: false),
         FilterSection(filter: "Calories",
@@ -91,9 +93,9 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chosenSection = sections[indexPath.section].filter
-        if chosenSection == "Ingredient"{
+        if chosenSection == "Add Ingredients"{
             if (sections[indexPath.section].expanded){
-                return 80
+                return 44
             } else{
                 return 0
             }
@@ -119,10 +121,21 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let chosenSection = sections[indexPath.section].filter
         
-        if chosenSection == "Ingredient"{
+        if chosenSection == "Add Ingredients"{
             //let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "searchCell")
-            let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell")!
-
+            //CELL DELEGATE AND STUFF
+            let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell") as! SearchCell
+            
+            //cell.delegate = self
+            
+            
+            cell.textLabel?.text = "Add: "
+            
+            cell.textLabel?.textColor = UIColor(red: 255/255, green: 252/255, blue: 232/255, alpha: 100)
+            cell.backgroundColor = UIColor(red: 18/255, green: 53/255, blue: 91/255, alpha: 100)
+            
+            
+            
             return cell
 
         }
@@ -130,11 +143,20 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if chosenSection == "Calories"{
             let cell = tableView.dequeueReusableCell(withIdentifier: "calorieCell")!
             
+            cell.textLabel?.text = "Less Than: "
+            
+            cell.textLabel?.textColor = UIColor(red: 255/255, green: 252/255, blue: 232/255, alpha: 100)
+            cell.backgroundColor = UIColor(red: 18/255, green: 53/255, blue: 91/255, alpha: 100)
+            
             return cell
         }
         else{
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell")!
         cell.textLabel?.text = sections[indexPath.section].attributes[indexPath.row]
+            
+        cell.textLabel?.textColor = UIColor(red: 255/255, green: 252/255, blue: 232/255, alpha: 100)
+        cell.backgroundColor = UIColor(red: 18/255, green: 53/255, blue: 91/255, alpha: 100)
+        
         cell.imageView?.image = UIImage(named:"btn_heart_black_outline")
         return cell
         }
@@ -147,7 +169,7 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let chosenSection = sections[indexPath.section].filter
         let selectedFilter = sections[indexPath.section].attributes[indexPath.row]
         
-        if chosenSection != "Ingredient" && chosenSection != "Calories"{
+        if chosenSection != "Add Ingredients" && chosenSection != "Calories"{
             
             if cell?.imageView?.image == UIImage(named: "btn_heart_black_outline"){
                 cell?.imageView?.image = UIImage(named: "btn_heart_red_solid")
@@ -204,7 +226,11 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         tableView.endUpdates()
     }
-    
+    /*
+    func getIngredients(cell: SearchCell) -> [String]{
+        return cell.enteredIngredients
+    }
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "filterToResults" {
             let arrToPass = filterTypeKey + adjustedFilterTypeKey
@@ -213,7 +239,9 @@ class FilterController: UIViewController, UITableViewDelegate, UITableViewDataSo
             let resultsController = nav.viewControllers[0] as! ResultsController
             resultsController.segueID = self.segueID
             resultsController.filterTypeKey = arrToPass
-            resultsController.recievedIngredients = recievedIngredients
+            //resultsController.recievedIngredients = recievedIngredients
+            print(enteredIngredients)
+            resultsController.recievedIngredients = enteredIngredients
             //print("arr equals: \(resultsController.filterTypeKey)")
             
         }

@@ -38,8 +38,13 @@ class ExpandableHeaderView: UITableViewHeaderFooterView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.textLabel?.textColor = UIColor.white
-        self.contentView.backgroundColor = UIColor.darkGray
+        //self.textLabel?.textColor = UIColor.white
+        self.textLabel?.textColor = UIColor(red: 255/255, green: 252/255, blue: 232/255, alpha: 100)
+            
+            
+            //Color.parseColor("#FFFCE8")
+
+        self.contentView.backgroundColor = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 100)
     }
     
     /*

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RightViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class RightViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -31,13 +31,21 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let itemSize = UIScreen.main.bounds.width/3 - 3
+        //let itemSize = UIScreen.main.bounds.width/3 - 3
+        let itemSize = UIScreen.main.bounds.width/3
+
         let layout = UICollectionViewFlowLayout()
+        //layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
         layout.sectionInset = UIEdgeInsetsMake(20, 0, 10, 0)
+
         layout.itemSize = CGSize(width: itemSize, height: itemSize)
         
-        layout.minimumInteritemSpacing = 3
+        
+        
+        layout.minimumInteritemSpacing = 100
+        
         layout.minimumLineSpacing = 3
+        
         collectionView.collectionViewLayout = layout
         
     }
@@ -67,7 +75,14 @@ class RightViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     //Change cell size
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 20), height: CGFloat(100))
+        return CGSize(width: CGFloat((collectionView.frame.size.width / 2.3 ) - 3), height: CGFloat(150))
+        //return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 3), height: CGFloat(120))
+
+        //return CGSize(width: CGFloat((collectionView.frame.size.width) - 20), height: CGFloat(150))
+        //return CGSize(width: CGFloat((collectionView.frame.size.width / 2), height: CGFloat(150))
+        //return CGSize(width: CGFloat((collectionView.frame.size.width / 1.5 ) - 3), height: CGFloat(190))
+
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

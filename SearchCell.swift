@@ -8,10 +8,21 @@
 
 import UIKit
 import SearchTextField
+//HELP WITH PROTOCOLS AND GET SETS AND STUFF
+/*
+protocol SearchCellDelegate : class{
+    //var enteredIngredients: [String]
+    func getIngredients(cell: SearchCell) -> [String]
+}
+ */
+
+var enteredIngredients: [String] = []
 
 class SearchCell: UITableViewCell, UITextFieldDelegate{
     @IBOutlet weak var entryField: SearchTextField!
     
+    //var delegate: SearchCellDelegate?
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +39,8 @@ class SearchCell: UITableViewCell, UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn")
         //enteredTable.beginUpdates()
-        
+        enteredIngredients.append(entryField.text!)
+        print(entryField)
         entryField.text! = ""
         entryField.resignFirstResponder()
         /*
@@ -68,12 +80,15 @@ class SearchCell: UITableViewCell, UITextFieldDelegate{
     func configureSimpleSearchTextField() {
         
         let arrDrinks = GlobalVariables.arrDrinks //DatabaseParse.getDataFromName(array: DatabaseParse.getJson())
+        let arrIngredients = GlobalVariables.arrIngredients
         
+        /*
         var drinkNameArr: [String] = []
         for drink in arrDrinks{
             drinkNameArr.append(drink.name)
         }
-        entryField.filterStrings(drinkNameArr)
+        */
+        entryField.filterStrings(arrIngredients!)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

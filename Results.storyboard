@@ -132,7 +132,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6iP-Bc-7At">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filterCell" id="CU0-iN-uXi" customClass="FilterCustomCell" customModule="Blix" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -164,14 +164,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rLl-ld-ihp" customClass="SearchTextField" customModule="SearchTextField">
-                                                    <rect key="frame" x="139" y="35" width="97" height="30"/>
+                                                    <rect key="frame" x="244" y="8" width="97" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.070588235294117646" green="0.20784313725490194" blue="0.81087239583333337" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="entryField" destination="rLl-ld-ihp" id="Hk6-DQ-LyE"/>
@@ -209,7 +208,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.72549019609999998" green="0.61526677539999997" blue="0.83743780850000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="calorieInput" destination="cEi-yW-710" id="1iA-19-nbc"/>
@@ -222,7 +220,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.070588235289999995" green="0.20784313730000001" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tnQ-6q-g4y" firstAttribute="top" secondItem="6iP-Bc-7At" secondAttribute="bottom" id="5cb-xu-4Wo"/>
                             <constraint firstItem="6iP-Bc-7At" firstAttribute="top" secondItem="tc0-rB-0FV" secondAttribute="top" id="L8D-6X-jEo"/>
@@ -230,7 +228,7 @@
                             <constraint firstItem="6iP-Bc-7At" firstAttribute="leading" secondItem="tc0-rB-0FV" secondAttribute="leading" id="niR-gi-NTd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DcY-sb-DqJ">
+                    <navigationItem key="navigationItem" id="DcY-sb-DqJ" colorLabel="IBBuiltInLabel-Orange">
                         <barButtonItem key="leftBarButtonItem" id="UJg-ds-miC">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2lX-YP-jze">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>

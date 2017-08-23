@@ -110,6 +110,7 @@ class ManualEntry: UIViewController, UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell", for: indexPath)
         let ingredient = enteredIngredients[indexPath.row]
         
+        cell.textLabel?.font = UIFont(name:"Crescent-Regular",size:22)
         cell.textLabel?.text = ingredient
         
         return cell

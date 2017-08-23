@@ -72,7 +72,6 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.organizeDrinks()
         self.createSections()
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,13 +129,12 @@ class ResultsController: UIViewController, UITableViewDelegate, UITableViewDataS
                     var drinkNameArr = [String]()
                     var drinkObjArr = [Drink()]
                         //for drink in typeDict[type]!{
+                        //INDEX OUT OF RANGE
                         for index in 1...50{
                             drinkNameArr.append((typeDict[type]?[index].name)!)
                             //INDEX OUT OF RANGE FOR LIQUEUR
                             drinkObjArr.append((typeDict[type]?[index])!)
-                    }
-                    
-                            
+                    }      
 
                         //}
                     
